@@ -3,16 +3,12 @@ package puissance4;
 public class Jeu {
 
 		public Plateau plateau;
-		private int aQuiLeTour;
-		/**
-		 * Si c'est au tour du joueur 1.
-		 */
-		private boolean tourJ1;
+		private byte aQuiLeTour;
 		
 		public Jeu(){
 			plateau = new Plateau();
 			this.getPlateau().initialisePlateau();
-			this.aQuiLeTour=0;
+			this.aQuiLeTour=1;
 		}
 		
 		public void nouvellePartie(){
@@ -20,11 +16,22 @@ public class Jeu {
 		}
 
 		public void changerLaMain(){
-			this.aQuiLeTour=(this.aQuiLeTour+1)%2;
+			if (this.aQuiLeTour == 1)
+				this.aQuiLeTour = 2;
+			else
+				this.aQuiLeTour = 1;
 		}
 		
 		public Plateau getPlateau() {
 			return plateau;
+		}
+		
+		/**
+		 * Renvoie le joueur en cours
+		 * @return le joueur en cours 
+		 */
+		public byte tourJoueur(){
+			return aQuiLeTour;
 		}
 		
 		/**

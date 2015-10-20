@@ -1,5 +1,7 @@
 package puissance4;
 
+import utils.Constantes;
+
 public class Plateau {
 	//-- tableau :  represente la grille puissance4 
 	byte tableau [][];
@@ -8,7 +10,7 @@ public class Plateau {
 	//--			2 pour un pion du joueur 2
 
 	public Plateau(){
-		tableau = new byte[6][7];		
+		tableau = new byte[6][7];
 	}
 	
 	//-- initialise le tableau de 0 --//
@@ -21,18 +23,20 @@ public class Plateau {
 	}
 
 	//-- Ajoute un pion pour un joueur donné dans la colonne col
-/*	public void AjoutePion(int joueur, int col){
+	public void ajoutePion(byte joueur, int col){
 		int i=0;
-		while((i<6) && (tableau[i][col]!=0)){
+		while((i<Constantes.NOMBRE_LIGNE_JEUX) && (tableau[i][col]==0)){
 			i++;
 		}
-		if(i==6){
-			//-- TODO :  exception : on sort du tableau colonne pleine --//
-		}else{
-			tableau[i][col] = col;
+		i--;
+		if(i == -1){
+		// TODO le tableau est rempli exception
+		}
+		else{
+			tableau[i][col] = joueur;
 		}
 	}
-*/	
+	
 	//-- Parcout le tableau horizontla/vertical pour savoir si un joueur J a gagné --//
 	public boolean VictoireHV(int joueur){
 		boolean victoire = false;
@@ -139,10 +143,26 @@ public class Plateau {
 	public void AffichePlateau(){
 		for(int i=0;i<6;i++){
 			for(int j=0;j<7;j++){
-				System.out.println(tableau[i][j]);
+				System.out.print(tableau[i][j]);
 			}
-			System.out.println("\n");
+			System.out.print("\n");
 		}
+	}
+	
+	/**
+	 * renvoie vrai si l'ajout d'un pion est possible à la position i,j
+	 * @param i ligne
+	 * @param j colonne
+	 * @return Renvoie vrai si l'ajout est possible à la position (i,j)
+	 */
+	public boolean ajoutPossible(int i,int j){
+		if (this.tableau[i][j] == 0) {
+			if (i<Constantes.NOMBRE_LIGNE_JEUX-1)
+				return this.tableau[i+1][j] != 0;
+			else
+				return true;
+		}
+		return false;
 	}
 	
 	
