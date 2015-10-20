@@ -2,13 +2,13 @@ package puissance4;
 
 public class Plateau {
 	//-- tableau :  represente la grille puissance4 
-	int tableau [][];
+	byte tableau [][];
 	//-- 			0 pour une position vide
 	//--			1 pour un pion du joueur 1
 	//--			2 pour un pion du joueur 2
 
 	public Plateau(){
-		tableau = new int[6][7];		
+		tableau = new byte[6][7];		
 	}
 	
 	//-- initialise le tableau de 0 --//
@@ -21,7 +21,7 @@ public class Plateau {
 	}
 
 	//-- Ajoute un pion pour un joueur donné dans la colonne col
-	public void AjoutePion(int joueur, int col){
+/*	public void AjoutePion(int joueur, int col){
 		int i=0;
 		while((i<6) && (tableau[i][col]!=0)){
 			i++;
@@ -32,7 +32,7 @@ public class Plateau {
 			tableau[i][col] = col;
 		}
 	}
-	
+*/	
 	//-- Parcout le tableau horizontla/vertical pour savoir si un joueur J a gagné --//
 	public boolean VictoireHV(int joueur){
 		boolean victoire = false;
@@ -64,6 +64,19 @@ public class Plateau {
 					}
 				}
 		return false;
+	}
+	
+	
+	public boolean estCaseVide(int i,int j){
+		return this.tableau[i][j] == 0;
+	}
+	
+	public boolean estCaseJoueur1(int i,int j){
+		return this.tableau[i][j] == 1;
+	}
+	
+	public byte getContenu(int i, int j) {
+		return this.tableau[i][j];
 	}
 	
 	//-- Parcout le tableau en diagonale pour savoir si un joueur J a gagné --//
@@ -120,6 +133,7 @@ public class Plateau {
 			
 			return false;
 		}
+	
 		
 	//-- affiche le plateau pour debug --//
 	public void AffichePlateau(){
@@ -129,5 +143,15 @@ public class Plateau {
 			}
 			System.out.println("\n");
 		}
+	}
+	
+	
+	/**
+	 * 	Vraie si la partie est finie
+	 * @return Vraie si la partie est finie
+	 */
+	public boolean finDePartie(){
+		// TODO A faire
+		return false;
 	}
 }

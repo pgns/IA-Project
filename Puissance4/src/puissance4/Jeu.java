@@ -2,8 +2,12 @@ package puissance4;
 
 public class Jeu {
 
-		private Plateau plateau;
+		public Plateau plateau;
 		private int aQuiLeTour;
+		/**
+		 * Si c'est au tour du joueur 1.
+		 */
+		private boolean tourJ1;
 		
 		public Jeu(){
 			plateau = new Plateau();
@@ -21,5 +25,13 @@ public class Jeu {
 		
 		public Plateau getPlateau() {
 			return plateau;
+		}
+		
+		/**
+		 * Vraie si la partie est finie
+		 * @return Vrai si la partie est finie
+		 */
+		public boolean partieFini(){
+			return this.plateau.finDePartie();
 		}
 }
