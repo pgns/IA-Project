@@ -38,36 +38,44 @@ public class Plateau {
 	}
 	
 	//-- Parcout le tableau horizontla/vertical pour savoir si un joueur J a gagné --//
-	public boolean VictoireHV(int joueur){
-		boolean victoire = false;
-		int a=0;
+	//-- retourne le joueur gagnant, ou 0 sinon --//
+	public byte VictoireHV(){
+		int a = 0;
+		byte joueur;
 		//parcourt Horizontale
 		for(int i=0;i<6;i++){
+			a = 0;
+			joueur = tableau[i][0];
 			for(int j=0;j<7;j++){
-				if(tableau[i][j] == joueur){
+				if((tableau[i][j] == joueur)&&(joueur != 0)){
 					a++;
 					if(a==4){
-						return true;
+						return joueur;
 					}
 				}else{
-					a=0;
+					a = 1;
+					joueur = tableau[i][j];
 				}
 			}
 		}
 		//parcourt Verticale
-				for(int i=0;i<7;i++){
-					for(int j=0;j<i;j++){
-						if(tableau[j][i] == joueur){
-							a++;
-							if(a==4){
-								return true;
-							}
-						}else{
-							a=0;
-						}
+		a = 0;
+		for(int i=0;i<7;i++){
+			a = 0;
+			joueur = tableau[0][i];
+			for(int j=0;j<6;j++){
+				if((tableau[j][i] == joueur)&&(joueur != 0)){
+					a++;
+					if(a==4){
+						return joueur;
+					}
+				}else{
+					a = 1;
+					joueur = tableau[j][i];
 					}
 				}
-		return false;
+			}
+		return 0;
 	}
 	
 	
@@ -84,58 +92,82 @@ public class Plateau {
 	}
 	
 	//-- Parcout le tableau en diagonale pour savoir si un joueur J a gagné --//
-		public boolean VictoireDiagonale(int joueur){
+	//-- retourne le joueur gagnant, ou 0 sinon --//
+		public byte VictoireDiagonale(){
 			int i, j, k;
 			int a;
-			//--parcourt Gauche=>Droite--//
+			byte joueur;
+			//-- parcourt haut=>bas // gauche=>droite --//
 			for(i=0;i<6;i++){
-				j=0;
-				k=i;
-				a=0;
+				j = i;
+				k = 0;
+				a = 0;
+				joueur = tableau[j][k];
+				while(j<6){
+					if((tableau[j][k] == joueur)&&(joueur != 0)){
+						a++;
+						if(a == 4){return joueur;}
+					}else{
+						a=1;
+						joueur = tableau[j][k];
+					}
+					j++;
+					k++;
+				}
+			}
+			for(i=1;i<7;i++){
+				j = i;
+				k = 0;
+				a = 0;
+				joueur = tableau[k][j];
+				while(j<7){
+					if((tableau[k][j] == joueur)&&(joueur != 0)){
+						a++;
+						if(a == 4){return joueur;}
+					}else{
+						a = 1;
+						joueur = tableau[k][j];
+					}
+					j++;
+					k++;
+				}
+			}
+			//-- parcourt bas=>haut // gauche=>droite --//
+			for(i=0;i<6;i++){
+				j = 0;
+				k = i;
+				a = 0;
+				joueur = tableau[k][j];
 				while(j<=i){
+					if((tableau[k][j] == joueur)&&(joueur != 0)){
+						a++;
+						if(a == 4){return joueur;}
+					}else{
+						a = 1;
+						joueur = tableau[k][j];
+					}
 					j++;
 					k--;
-					if(tableau[k][j] == joueur){
-						a++;
-						if(a == 4){return true;}
-					}else{
-						a=0;
-					}
 				}
 			}
-			a=0;
-			j=1;
-			while(j<7){
-				for(k=j;k<7;k++){
-					if(tableau[6-j][j] == joueur){
+			for(i=1;i<7;i++){
+				j = 5;
+				k = i;
+				a = 0;
+				joueur = tableau[j][k];
+				while(j >= (i - 1)){
+					if((tableau[j][k] == joueur)&&(joueur != 0)){
 						a++;
-						if(a == 4){return true;}
+						if(a == 4){return joueur;}
 					}else{
-						a=0;
+						a = 1;
+						joueur = tableau[j][k];
 					}
-				}
-				j++;
-			}
-			//--parcourt Droite=>Gauche--//
-			while(i<6){
-				for(j=0;j<6;j++){
-					if(tableau[i][j] == joueur){
-						a++;
-						if(a == 4){return true;}
-					}else{
-						a=0;
-					}
+					j--;
+					k++;
 				}
 			}
-			
-				
-				// EN COUR //
-				
-				
-			
-			
-			
-			return false;
+			return 0;
 		}
 	
 		
@@ -171,7 +203,17 @@ public class Plateau {
 	 * @return Vraie si la partie est finie
 	 */
 	public boolean finDePartie(){
-		// TODO A faire
-		return false;
+		byte joueurGagnant;
+		joueurGagnant = VictoireHV();
+		if(joueurGagnant != 0){
+			System.out.println("Victoire du joueur "+joueurGagnant);
+			return true;
+		}
+		joueurGagnant = VictoireDiagonale();
+		if(joueurGagnant != 0){
+			System.out.println("Victoire du joueur "+joueurGagnant);
+			return true;
+		}
+		else{return false;}
 	}
 }
