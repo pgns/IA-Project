@@ -20,7 +20,6 @@ public class Jeu {
 				this.aQuiLeTour = 2;
 			else
 				this.aQuiLeTour = 1;
-			partieFini();
 		}
 		
 		public Plateau getPlateau() {

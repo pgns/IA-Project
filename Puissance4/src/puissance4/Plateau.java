@@ -1,6 +1,7 @@
 package puissance4;
 
 import utils.Constantes;
+import utils.Coordonnees;
 
 public class Plateau {
 	//-- tableau :  represente la grille puissance4 
@@ -9,6 +10,13 @@ public class Plateau {
 	//--			1 pour un pion du joueur 1
 	//--			2 pour un pion du joueur 2
 
+	
+	// les coordonnées des case victoires
+	public Coordonnees cord1Victoire;
+	public Coordonnees cord2Victoire;
+	public Coordonnees cord3Victoire;
+	public Coordonnees cord4Victoire;
+	
 	public Plateau(){
 		tableau = new byte[6][7];
 	}
@@ -20,6 +28,10 @@ public class Plateau {
 				tableau[i][j]=0;
 			}
 		}
+		cord1Victoire = new Coordonnees (-1,-1);
+		cord2Victoire = new Coordonnees (-1,-1);
+		cord3Victoire = new Coordonnees (-1,-1);
+		cord4Victoire = new Coordonnees (-1,-1);
 	}
 
 	//-- Ajoute un pion pour un joueur donné dans la colonne col
@@ -215,5 +227,161 @@ public class Plateau {
 			return true;
 		}
 		else{return false;}
+	}
+	
+	/**
+	 * renvoie si il y a des cordonnées victoire
+	 * @return vrai si on a des coordonnées de victoire
+	 */
+	public boolean cordVictoire(){
+		return this.cord1Victoire.getLigne() != -1;
+	}
+	
+	
+	/**
+	 *  Initialise les cordonnées des cases "vaincueur"
+	 * @return le joueur qui a gagné, 0 si pas de victoire
+	 */
+	public byte victoire(){
+		int i,j,jdep,idep;
+		int nb_meme_pions;
+		byte joueur;
+		//parcours horizontale
+		for(i=0; i < Constantes.NOMBRE_LIGNE_JEUX; i++){
+			nb_meme_pions = 0;
+			joueur = 0;
+			for(j=0; j< Constantes.NOMBRE_COLONNE_JEUX; j++){
+				if(this.tableau[i][j] == joueur && joueur != 0){
+					nb_meme_pions++;
+					if (nb_meme_pions == Constantes.NOMBRE_CASE_VICTOIRE-1){
+						this.cord4Victoire.setColonne(j);
+						this.cord4Victoire.setLigne(i);
+						this.cord3Victoire.setColonne(j-1);
+						this.cord3Victoire.setLigne(i);
+						this.cord2Victoire.setColonne(j-2);
+						this.cord2Victoire.setLigne(i);
+						this.cord1Victoire.setColonne(j-3);
+						this.cord1Victoire.setLigne(i);
+						System.out.println(this.cord4Victoire.toString()+" "+ this.cord1Victoire.toString());
+						return joueur;
+					}
+				}
+				else{
+					nb_meme_pions = 0;
+					joueur = tableau[i][j];
+				}
+			}
+		}
+		//parcours vertical
+		for(i=0; i < Constantes.NOMBRE_COLONNE_JEUX; i++){
+			nb_meme_pions = 0;
+			joueur = 0;
+			for (j=0; j<Constantes.NOMBRE_LIGNE_JEUX; j++){
+				if(this.tableau[j][i] == joueur && joueur != 0){
+					nb_meme_pions++;
+					if (nb_meme_pions == Constantes.NOMBRE_CASE_VICTOIRE-1){
+						System.out.println("Victoure vertciale");
+						this.cord4Victoire.setColonne(i);
+						this.cord4Victoire.setLigne(j);
+						this.cord3Victoire.setColonne(i);
+						this.cord3Victoire.setLigne(j-1);
+						this.cord2Victoire.setColonne(i);
+						this.cord2Victoire.setLigne(j-2);
+						this.cord1Victoire.setColonne(i);
+						this.cord1Victoire.setLigne(j-3);
+						return joueur;
+					}
+				}
+				else{
+					nb_meme_pions = 0;
+					joueur = tableau[j][i];
+				}
+			}
+		}
+		//parcours diagonale gauche-droite
+		i=0;
+		j=Constantes.NOMBRE_COLONNE_JEUX-Constantes.NOMBRE_CASE_VICTOIRE;
+		jdep=j;
+		idep=i;
+		while(idep < Constantes.NOMBRE_LIGNE_JEUX-Constantes.NOMBRE_CASE_VICTOIRE+1){
+			nb_meme_pions = 0;
+			joueur = 0;
+			while (j < Constantes.NOMBRE_COLONNE_JEUX && i < Constantes.NOMBRE_LIGNE_JEUX){
+				if(this.tableau[i][j] == joueur && joueur != 0){
+					nb_meme_pions++;
+					if (nb_meme_pions == Constantes.NOMBRE_CASE_VICTOIRE-1){
+						System.out.println("Victoure diagoneale 1");
+						this.cord4Victoire.setColonne(j);
+						this.cord4Victoire.setLigne(i);
+						this.cord3Victoire.setColonne(j-1);
+						this.cord3Victoire.setLigne(i-1);
+						this.cord2Victoire.setColonne(j-2);
+						this.cord2Victoire.setLigne(i-2);
+						this.cord1Victoire.setColonne(j-3);
+						this.cord1Victoire.setLigne(i-3);
+						return joueur;
+					}
+				}
+				else{
+					nb_meme_pions = 0;
+					joueur = tableau[i][j];
+				}
+				i++;
+				j++;
+			}
+			if (jdep > 0){
+				jdep--;
+				j=jdep;
+				i=0;
+			}
+			else{
+				j = 0;
+				idep++;
+				i=idep;
+			}
+		}
+		//parcours diagonale droite-gauche
+		i=0;
+		j=Constantes.NOMBRE_CASE_VICTOIRE-1;
+		jdep=j;
+		idep=i;
+		while(idep < Constantes.NOMBRE_LIGNE_JEUX-Constantes.NOMBRE_CASE_VICTOIRE+1){
+			nb_meme_pions = 0;
+			joueur = 0;
+			while (j >= 0 && i < Constantes.NOMBRE_LIGNE_JEUX){
+				if(this.tableau[i][j] == joueur && joueur != 0){
+					nb_meme_pions++;
+					if (nb_meme_pions == Constantes.NOMBRE_CASE_VICTOIRE-1){
+						System.out.println("Victoure diagoneale 2");
+						this.cord4Victoire.setColonne(j);
+						this.cord4Victoire.setLigne(i);
+						this.cord3Victoire.setColonne(j+1);
+						this.cord3Victoire.setLigne(i-1);
+						this.cord2Victoire.setColonne(j+2);
+						this.cord2Victoire.setLigne(i-2);
+						this.cord1Victoire.setColonne(j+3);
+						this.cord1Victoire.setLigne(i-3);
+						return joueur;
+					}
+				}
+				else{
+					nb_meme_pions = 0;
+					joueur = tableau[i][j];
+				}
+				i++;
+				j--;
+			}
+			if (jdep < Constantes.NOMBRE_COLONNE_JEUX-1){
+				jdep++;
+				j=jdep;
+				i=0;
+			}
+			else{
+				j =  Constantes.NOMBRE_COLONNE_JEUX-1;
+				idep++;
+				i=idep;
+			}
+		}		
+		return 0;
 	}
 }

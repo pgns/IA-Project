@@ -24,4 +24,8 @@ public class Coordonnees {
 	public void setColonne(int colonne) {
 		this.colonne = colonne;
 	}
+	
+	public String toString(){
+		return "ligne"+String.valueOf(ligne)+"colonne"+String.valueOf(colonne);
+	}
 }

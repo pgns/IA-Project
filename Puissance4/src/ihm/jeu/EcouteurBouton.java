@@ -22,6 +22,10 @@ public class EcouteurBouton implements ActionListener{
 	public void actionPerformed(ActionEvent ae) {
 		if(ae.getSource() == fenetreJeu.pCommande.bnouvellePartie){
 			this.fenetreJeu.moteurJeu.getJeu().nouvellePartie();
+			this.fenetreJeu.moteurJeu.setVerrouFinPartie(false);
+			//le joueur 1 commence
+			if (this.fenetreJeu.jeu.tourJoueur() == 2)
+				this.fenetreJeu.jeu.changerLaMain();
 			this.fenetreJeu.pJeu.airePlateau.repaint();
 		}
 		

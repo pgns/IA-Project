@@ -63,6 +63,7 @@ public class AirePlateau extends JComponent{
 	 */
 	synchronized public void dessinerPions(Graphics2D g2d){
 		int i,j;
+		dessinerVictoire(g2d);
 		for (i = 0 ; i < Constantes.NOMBRE_LIGNE_JEUX ; i++){
 			for (j = 0 ; j < Constantes.NOMBRE_COLONNE_JEUX; j++) {
 				if (! jeu.getPlateau().estCaseVide(i, j)){
@@ -75,6 +76,16 @@ public class AirePlateau extends JComponent{
 					g2d.fillOval(j*largeurCase,i*hauteurCase,largeurCase, hauteurCase);
 				}
 			}	
+		}
+	}
+	
+	synchronized public void dessinerVictoire(Graphics g2d){
+		if (jeu.getPlateau().cordVictoire()){
+			g2d.setColor(Color.ORANGE);
+			g2d.fillRect(jeu.getPlateau().cord1Victoire.getColonne()*largeurCase+1, jeu.getPlateau().cord1Victoire.getLigne()*hauteurCase+1, largeurCase-2, hauteurCase-2);
+			g2d.fillRect(jeu.getPlateau().cord2Victoire.getColonne()*largeurCase+1, jeu.getPlateau().cord2Victoire.getLigne()*hauteurCase+1, largeurCase-2, hauteurCase-2);
+			g2d.fillRect(jeu.getPlateau().cord3Victoire.getColonne()*largeurCase+1, jeu.getPlateau().cord3Victoire.getLigne()*hauteurCase+1, largeurCase-2, hauteurCase-2);
+			g2d.fillRect(jeu.getPlateau().cord4Victoire.getColonne()*largeurCase+1, jeu.getPlateau().cord4Victoire.getLigne()*hauteurCase+1, largeurCase-2, hauteurCase-2);
 		}
 	}
 	
