@@ -3,8 +3,13 @@ package ihm.jeu;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
+import java.io.IOException;
+
 import utils.Constantes;
 import utils.Coordonnees;
+
+import javax.imageio.ImageIO;
 import javax.swing.JComponent;
 import puissance4.Jeu;
 
@@ -25,12 +30,29 @@ public class AirePlateau extends JComponent{
 	int hauteurCase;
 	
 	/**
+	 * Image joueur 1
+	 */
+	private Image imageJoueur1;
+	
+	/**
+	 * Image joueur 2
+	 */
+	private Image imageJoueur2;
+	
+	/**
 	 * Initialise l'aire de jeu
 	 * @param j Le jeu
 	 */
 	AirePlateau(Jeu j){
 		super();
 		this.jeu=j;
+		System.out.println(Constantes.URL_IMAGE_JOUEUR_1);
+		try{
+			this.imageJoueur1 = ImageIO.read(Constantes.URL_IMAGE_JOUEUR_1);
+			this.imageJoueur2 = ImageIO.read(Constantes.URL_IMAGE_JOUEUR_2);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	/**
@@ -68,12 +90,19 @@ public class AirePlateau extends JComponent{
 			for (j = 0 ; j < Constantes.NOMBRE_COLONNE_JEUX; j++) {
 				if (! jeu.getPlateau().estCaseVide(i, j)){
 					if (jeu.getPlateau().estCaseJoueur1(i, j)) {
-						g2d.setColor(Constantes.COULEUR_JOUEUR_1);
+					/*	pour le dessin graphique
+						g2d.setColor(Constantes.COULEUR_JOUEUR_1); 
+					 */
+						g2d.drawImage(imageJoueur1, j*largeurCase, i*hauteurCase, largeurCase, hauteurCase, this);
 					}
 					else {
+						g2d.drawImage(imageJoueur2, j*largeurCase, i*hauteurCase, largeurCase, hauteurCase, this);
+					/* pour le dessin graphique
 						g2d.setColor(Constantes.COULEUR_JOUEUR_2);
+						*/
 					}
-					g2d.fillOval(j*largeurCase,i*hauteurCase,largeurCase, hauteurCase);
+				// pour le desin graphique	
+				//	g2d.fillOval(j*largeurCase,i*hauteurCase,largeurCase, hauteurCase);
 				}
 			}	
 		}
