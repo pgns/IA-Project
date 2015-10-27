@@ -46,7 +46,6 @@ public class AirePlateau extends JComponent{
 	AirePlateau(Jeu j){
 		super();
 		this.jeu=j;
-		System.out.println(Constantes.URL_IMAGE_JOUEUR_1);
 		try{
 			this.imageJoueur1 = ImageIO.read(Constantes.URL_IMAGE_JOUEUR_1);
 			this.imageJoueur2 = ImageIO.read(Constantes.URL_IMAGE_JOUEUR_2);
@@ -93,10 +92,10 @@ public class AirePlateau extends JComponent{
 					/*	pour le dessin graphique
 						g2d.setColor(Constantes.COULEUR_JOUEUR_1); 
 					 */
-						g2d.drawImage(imageJoueur1, j*largeurCase, i*hauteurCase, largeurCase, hauteurCase, this);
+						g2d.drawImage(imageJoueur1, j*largeurCase+2, i*hauteurCase+2, largeurCase-4, hauteurCase-4, this);
 					}
 					else {
-						g2d.drawImage(imageJoueur2, j*largeurCase, i*hauteurCase, largeurCase, hauteurCase, this);
+						g2d.drawImage(imageJoueur2, j*largeurCase+2, i*hauteurCase+2, largeurCase-4, hauteurCase-4, this);
 					/* pour le dessin graphique
 						g2d.setColor(Constantes.COULEUR_JOUEUR_2);
 						*/

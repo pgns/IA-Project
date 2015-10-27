@@ -17,6 +17,6 @@ public class Constantes {
 	public static byte JOUEUR1 = 1;
 	public static byte JOUEUR2 = 2;
 	public static String DOSSIER_IMAGES = "Images/";
-	public static URL URL_IMAGE_JOUEUR_1 = RESSOURCES.getURL(DOSSIER_IMAGES + "Circle_Yellow.png");
-	public static URL URL_IMAGE_JOUEUR_2 = RESSOURCES.getURL(DOSSIER_IMAGES + "Circle_Red.png");
+	public static URL URL_IMAGE_JOUEUR_1 = RESSOURCES.getURL(DOSSIER_IMAGES + "Jaune.png");
+	public static URL URL_IMAGE_JOUEUR_2 = RESSOURCES.getURL(DOSSIER_IMAGES + "Rouge.png");
 }
