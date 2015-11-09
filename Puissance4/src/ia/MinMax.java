@@ -97,7 +97,7 @@ public class MinMax {
 		int valeur;
 		//System.out.println("Joueur : "+joueur);
 		for (int i=0 ; i < this.listeCoupPossible.size(); i++){
-			valeur = valeurMinMaxLimite(this.listeCoupPossible.get(i),joueur,false,1);
+			valeur = valeurMinMaxLimite(this.listeCoupPossible.get(i),joueur,false,4);
 			/*System.out.println();
 			System.out.println(valeur+" "+i);
 			System.out.println();

@@ -1,6 +1,7 @@
 package puissance4;
 
 import ia.MinMax;
+import ia.BestFirst;
 import ihm.jeu.FenetreJeu;
 
 /**
@@ -31,7 +32,7 @@ public class MoteurJeu {
 	private boolean verrouFinPartie;
 
 	private MinMax test;
-	
+	private BestFirst secondAlgo;
 	
 	/**
 	 * Initialise le moteur
@@ -45,6 +46,7 @@ public class MoteurJeu {
 		this.setVerrou(false);
 		this.setVerrouFinPartie(false);
 		test = new MinMax();
+		secondAlgo = new BestFirst();
 	}
 	
 	/**
@@ -58,8 +60,9 @@ public class MoteurJeu {
 			System.out.println("Baboum");
 		if (this.jeu.tourJoueur() == 1 && TypeJoueur.estOrdi(this.jeu.typeJoueur1())){
 			this.setVerrou(true);
-			// ordi joue
+			// L'IA JOUE
 			test.minMax(jeu.tourJoueur(),jeu.getPlateau());
+			//secondAlgo.BestFirst(jeu.tourJoueur(), jeu.getPlateau());
 			System.out.println("Entre dans 1");
 
 			jeu.changerLaMain();
@@ -69,8 +72,9 @@ public class MoteurJeu {
 		}
 		else if(this.jeu.tourJoueur() == 2){// && TypeJoueur.estOrdi(this.jeu.typeJoueur2())){
 			this.setVerrou(true);
-			// ordi joue
+			// L'IA JOUE
 			jeu.plateau = test.minMax(jeu.tourJoueur(),jeu.getPlateau());
+			//jeu.plateau = secondAlgo.BestFirst(jeu.tourJoueur(),jeu.getPlateau());
 			
 			jeu.changerLaMain();
 			this.setVerrou(false);
