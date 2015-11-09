@@ -23,10 +23,24 @@ public class EcouteurBouton implements ActionListener{
 	
 	public void actionPerformed(ActionEvent ae) {
 		if(ae.getSource() == fenetreJeu.pCommande.bnouvellePartie){
-			TypeJoueur tJ1 = TypeJoueur.HUMAIN;
-			TypeJoueur tJ2 = TypeJoueur.HUMAIN;
-			tJ1.typeJoueur((String)fenetreJeu.pCommande.choixJoueur1.getSelectedItem());
-			tJ2.typeJoueur((String)fenetreJeu.pCommande.choixJoueur2.getSelectedItem());
+			TypeJoueur tJ1;
+			TypeJoueur tJ2;
+			if (fenetreJeu.pCommande.choixJoueur1.getSelectedIndex() == 0)
+				tJ1 = TypeJoueur.HUMAIN;
+			else if (fenetreJeu.pCommande.choixJoueur1.getSelectedIndex() == 1)
+				tJ1 = TypeJoueur.IA_FACILE;
+			else if (fenetreJeu.pCommande.choixJoueur1.getSelectedIndex() == 2)
+				tJ1 = TypeJoueur.IA_MOYEN;
+			else // (fenetreJeu.pCommande.choixJoueur1.getSelectedIndex() == 3)
+				tJ1 = TypeJoueur.IA_DIFFICILE;
+			if (fenetreJeu.pCommande.choixJoueur2.getSelectedIndex() == 0)
+				tJ2 = TypeJoueur.HUMAIN;
+			else if (fenetreJeu.pCommande.choixJoueur2.getSelectedIndex() == 1)
+				tJ2 = TypeJoueur.IA_FACILE;
+			else if (fenetreJeu.pCommande.choixJoueur2.getSelectedIndex() == 2)
+				tJ2 = TypeJoueur.IA_MOYEN;
+			else // (fenetreJeu.pCommande.choixJoueur2.getSelectedIndex() == 3)
+				tJ2 = TypeJoueur.IA_DIFFICILE;
 			this.fenetreJeu.moteurJeu.getJeu().nouvellePartie(tJ1,tJ2);
 			this.fenetreJeu.moteurJeu.setVerrouFinPartie(false);
 			//le joueur 1 commence
