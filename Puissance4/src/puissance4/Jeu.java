@@ -4,14 +4,39 @@ public class Jeu {
 
 		public Plateau plateau;
 		private byte aQuiLeTour;
+		/**
+		 * Type du joueur 1.
+		 */
+		private TypeJoueur typeJ1;
+		/**
+		 * Type du joueur 2.
+		 */
+		private TypeJoueur typeJ2;
+
 		
 		public Jeu(){
 			plateau = new Plateau();
+			typeJ1 = TypeJoueur.HUMAIN;
+			typeJ2 = TypeJoueur.HUMAIN;
+			this.getPlateau().initialisePlateau();
+			this.aQuiLeTour=1;
+		}
+		
+		public Jeu(TypeJoueur j1,TypeJoueur j2){
+			plateau = new Plateau();
+			typeJ1 = j1;
+			typeJ2 = j2;
 			this.getPlateau().initialisePlateau();
 			this.aQuiLeTour=1;
 		}
 		
 		public void nouvellePartie(){
+			this.getPlateau().initialisePlateau();
+		}
+		
+		public void nouvellePartie(TypeJoueur j1,TypeJoueur j2){
+			typeJ1 = j1;
+			typeJ2 = j2;
 			this.getPlateau().initialisePlateau();
 		}
 
@@ -41,4 +66,16 @@ public class Jeu {
 		public boolean partieFini(){
 			return this.plateau.finDePartie();
 		}
+		
+		public TypeJoueur typeJoueur1(){
+			return this.typeJ1;
+		}
+		
+		public TypeJoueur typeJoueur2(){
+			return this.typeJ2;
+		}
+		
+		
+	//	public void jouerCoup()
+		
 }

@@ -4,6 +4,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
+import ia.MinMax;
 import puissance4.MoteurJeu;
 import utils.Constantes;
 import utils.Coordonnees;
@@ -31,7 +32,7 @@ public class EcouteurSourisJeu implements MouseListener, MouseMotionListener{
 	
 	public void mouseClicked(MouseEvent me) {
 		// si ce n'est pas la fin de la partie
-		if (! this.moteurJeu.isVerrouFinPartie()){
+		if (! this.moteurJeu.isVerrouFinPartie() && !this.moteurJeu.isVerrou()){
 			// on calculle les cordonnées du tableau
 			Coordonnees cord = this.airePlateau.coordonneesClic(me.getX(), me.getY());
 			// on regarde si les cordonnées sont corects
@@ -41,12 +42,15 @@ public class EcouteurSourisJeu implements MouseListener, MouseMotionListener{
 					// si l'ajout du pion est possible, on effectue le déplacement
 					this.airePlateau.getJeu().getPlateau().ajoutePion(this.moteurJeu.getJeu().tourJoueur(),cord.getColonne());
 					this.moteurJeu.getJeu().changerLaMain();
+				//	MinMax test = new MinMax();
+				//	test.minMax(this.moteurJeu.getJeu().tourJoueur(),this.airePlateau.getJeu().getPlateau());
 				//	this.airePlateau.getJeu().getPlateau().AffichePlateau();
 					if (this.airePlateau.getJeu().getPlateau().victoire() != 0){
 					// Mettre le verrou fin de partie
 						this.moteurJeu.setVerrouFinPartie(true);
 					}
 					this.airePlateau.repaint();
+					this.moteurJeu.jouer();
 				}
 			}
 		}

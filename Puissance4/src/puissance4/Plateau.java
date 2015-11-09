@@ -3,7 +3,7 @@ package puissance4;
 import utils.Constantes;
 import utils.Coordonnees;
 
-public class Plateau {
+public class Plateau implements Cloneable {
 	//-- tableau :  represente la grille puissance4 
 	byte tableau [][];
 	//-- 			0 pour une position vide
@@ -19,6 +19,10 @@ public class Plateau {
 	
 	public Plateau(){
 		tableau = new byte[6][7];
+		cord1Victoire = new Coordonnees (-1,-1);
+		cord2Victoire = new Coordonnees (-1,-1);
+		cord3Victoire = new Coordonnees (-1,-1);
+		cord4Victoire = new Coordonnees (-1,-1);
 	}
 	
 	//-- initialise le tableau de 0 --//
@@ -48,6 +52,16 @@ public class Plateau {
 			tableau[i][col] = joueur;
 		}
 	}
+	
+	/**
+	 * Fonction pour construire la liste des coups possibles pour l'IA
+	 * @param col la colonne
+	 * @return vrai si l'ajout est possible dans la colonne
+	 */
+	public boolean ajoutColonnePossible(int col){
+		return tableau[0][col] == 0;
+	}
+	
 	
 	//-- Parcout le tableau horizontla/vertical pour savoir si un joueur J a gagné --//
 	//-- retourne le joueur gagnant, ou 0 sinon --//
@@ -262,7 +276,6 @@ public class Plateau {
 						this.cord2Victoire.setLigne(i);
 						this.cord1Victoire.setColonne(j-3);
 						this.cord1Victoire.setLigne(i);
-						System.out.println(this.cord4Victoire.toString()+" "+ this.cord1Victoire.toString());
 						return joueur;
 					}
 				}
@@ -280,7 +293,6 @@ public class Plateau {
 				if(this.tableau[j][i] == joueur && joueur != 0){
 					nb_meme_pions++;
 					if (nb_meme_pions == Constantes.NOMBRE_CASE_VICTOIRE-1){
-						System.out.println("Victoure vertciale");
 						this.cord4Victoire.setColonne(i);
 						this.cord4Victoire.setLigne(j);
 						this.cord3Victoire.setColonne(i);
@@ -310,7 +322,6 @@ public class Plateau {
 				if(this.tableau[i][j] == joueur && joueur != 0){
 					nb_meme_pions++;
 					if (nb_meme_pions == Constantes.NOMBRE_CASE_VICTOIRE-1){
-						System.out.println("Victoure diagoneale 1");
 						this.cord4Victoire.setColonne(j);
 						this.cord4Victoire.setLigne(i);
 						this.cord3Victoire.setColonne(j-1);
@@ -352,7 +363,6 @@ public class Plateau {
 				if(this.tableau[i][j] == joueur && joueur != 0){
 					nb_meme_pions++;
 					if (nb_meme_pions == Constantes.NOMBRE_CASE_VICTOIRE-1){
-						System.out.println("Victoure diagoneale 2");
 						this.cord4Victoire.setColonne(j);
 						this.cord4Victoire.setLigne(i);
 						this.cord3Victoire.setColonne(j+1);
@@ -383,5 +393,26 @@ public class Plateau {
 			}
 		}		
 		return 0;
+	}
+	
+	/**
+	 * copie du tableau
+	 * @param p Plateau à copier
+	 */
+	public void copieTableau(Plateau p){
+		int i,j;
+		for (i = 0 ; i < Constantes.NOMBRE_LIGNE_JEUX; i++)
+			for(j = 0; j < Constantes.NOMBRE_COLONNE_JEUX; j++)
+				this.tableau[i][j] = p.getContenu(i, j);
+	}
+	
+	
+	public boolean plateauPlein(){
+		for(int i =0 ; i < Constantes.NOMBRE_COLONNE_JEUX; i++){
+			if(this.tableau[0][i]==0){
+				return false;
+			}
+		}
+		return true;
 	}
 }

@@ -10,7 +10,6 @@ public class Test {
 	public static void main(String[] args) {
 		j = new Jeu();
 		FenetreJeu f = new FenetreJeu(j);
-		
 
 	}
 

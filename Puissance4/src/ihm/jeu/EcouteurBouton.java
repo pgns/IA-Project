@@ -2,6 +2,8 @@ package ihm.jeu;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import puissance4.TypeJoueur;
+
 
 public class EcouteurBouton implements ActionListener{
 
@@ -21,7 +23,11 @@ public class EcouteurBouton implements ActionListener{
 	
 	public void actionPerformed(ActionEvent ae) {
 		if(ae.getSource() == fenetreJeu.pCommande.bnouvellePartie){
-			this.fenetreJeu.moteurJeu.getJeu().nouvellePartie();
+			TypeJoueur tJ1 = TypeJoueur.HUMAIN;
+			TypeJoueur tJ2 = TypeJoueur.HUMAIN;
+			tJ1.typeJoueur((String)fenetreJeu.pCommande.choixJoueur1.getSelectedItem());
+			tJ2.typeJoueur((String)fenetreJeu.pCommande.choixJoueur2.getSelectedItem());
+			this.fenetreJeu.moteurJeu.getJeu().nouvellePartie(tJ1,tJ2);
 			this.fenetreJeu.moteurJeu.setVerrouFinPartie(false);
 			//le joueur 1 commence
 			if (this.fenetreJeu.jeu.tourJoueur() == 2)
