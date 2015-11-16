@@ -18,8 +18,12 @@ public class Hasard {
 	}
 	
 	public Plateau hasrad(byte joueur, Plateau plateau){
+		int nombreCoupPossible;
 		this.listeCoupPossible = new ListeCoupPossible(plateau,joueur);
-		int indice = rand.nextInt(this.listeCoupPossible.size());
+		nombreCoupPossible = this.listeCoupPossible.size();
+		if (nombreCoupPossible == 0)
+			return plateau;
+		int indice = rand.nextInt(nombreCoupPossible);
 		return this.listeCoupPossible.get(indice);
 	}
 }
