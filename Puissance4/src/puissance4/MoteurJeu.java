@@ -76,6 +76,8 @@ public class MoteurJeu {
 			this.setVerrou(false);
 			if(jeu.getPlateau().plateauPlein() || jeu.getPlateau().victoire() != 0)
 				this.verrouFinPartie = true;
+			else
+				this.jouer();
 		}
 		else if(this.jeu.tourJoueur() == 2 && TypeJoueur.estOrdi(this.jeu.typeJoueur2())){
 			this.setVerrou(true);
@@ -93,6 +95,8 @@ public class MoteurJeu {
 			this.setVerrou(false);
 			if(jeu.getPlateau().plateauPlein() || jeu.getPlateau().victoire() != 0)
 				this.verrouFinPartie = true;
+			else
+				this.jouer();
 		}
 			
 	}
