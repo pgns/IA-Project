@@ -47,6 +47,7 @@ public class EcouteurBouton implements ActionListener{
 			if (this.fenetreJeu.jeu.tourJoueur() == 2)
 				this.fenetreJeu.jeu.changerLaMain();
 			this.fenetreJeu.pJeu.airePlateau.repaint();
+			this.fenetreJeu.moteurJeu.jouer();
 		}
 		
 	}

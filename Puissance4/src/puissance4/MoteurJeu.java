@@ -2,6 +2,7 @@ package puissance4;
 
 import ia.MinMax;
 import ia.BestFirst;
+import ia.Hasard;
 import ihm.jeu.FenetreJeu;
 
 /**
@@ -31,8 +32,11 @@ public class MoteurJeu {
 	 */
 	private boolean verrouFinPartie;
 
-	private MinMax test;
-	private BestFirst secondAlgo;
+	private MinMax iaMinMax;
+	
+	private Hasard iaFacile;
+	
+	private BestFirst iaBestFirst;
 	
 	/**
 	 * Initialise le moteur
@@ -45,8 +49,9 @@ public class MoteurJeu {
 		this.jeu = j;
 		this.setVerrou(false);
 		this.setVerrouFinPartie(false);
-		test = new MinMax();
-		secondAlgo = new BestFirst();
+		this.iaFacile = new Hasard();
+		this.iaMinMax = new MinMax();
+		this.iaBestFirst = new BestFirst();
 	}
 	
 	/**
@@ -54,28 +59,36 @@ public class MoteurJeu {
 	 * C'est beugé pour l'instant:)
 	 */
 	public void jouer(){
-		System.out.println(this.jeu.typeJoueur1().toString());
-		System.out.println(this.jeu.typeJoueur2().toString());
-		if (this.jeu.typeJoueur1() == TypeJoueur.IA_FACILE)
-			System.out.println("Baboum");
 		if (this.jeu.tourJoueur() == 1 && TypeJoueur.estOrdi(this.jeu.typeJoueur1())){
+			// on place le vérrou
 			this.setVerrou(true);
-			// L'IA JOUE
-			test.minMax(jeu.tourJoueur(),jeu.getPlateau());
-			//secondAlgo.BestFirst(jeu.tourJoueur(), jeu.getPlateau());
-			System.out.println("Entre dans 1");
-
+			// On regarde quel IA faire jouer
+			if (this.jeu.typeJoueur1() == TypeJoueur.IA_FACILE){
+				jeu.plateau = iaFacile.hasrad(jeu.tourJoueur(), jeu.getPlateau());
+			}
+			if (this.jeu.typeJoueur1() == TypeJoueur.IA_MOYEN){
+				jeu.plateau = iaMinMax.minMax(jeu.tourJoueur(), jeu.getPlateau());
+			}
+			if (this.jeu.typeJoueur1() == TypeJoueur.IA_DIFFICILE){
+			//	jeu.plateau = iaBestFirst.bestFirst(jeu.tourJoueur(), jeu.getPlateau());
+			}
 			jeu.changerLaMain();
 			this.setVerrou(false);
 			if(jeu.getPlateau().plateauPlein() || jeu.getPlateau().victoire() != 0)
 				this.verrouFinPartie = true;
 		}
-		else if(this.jeu.tourJoueur() == 2){// && TypeJoueur.estOrdi(this.jeu.typeJoueur2())){
+		else if(this.jeu.tourJoueur() == 2 && TypeJoueur.estOrdi(this.jeu.typeJoueur2())){
 			this.setVerrou(true);
-			// L'IA JOUE
-			jeu.plateau = test.minMax(jeu.tourJoueur(),jeu.getPlateau());
-			//jeu.plateau = secondAlgo.BestFirst(jeu.tourJoueur(),jeu.getPlateau());
-			
+			// On regarde quel IA faire jouer
+			if (this.jeu.typeJoueur2() == TypeJoueur.IA_FACILE){
+				jeu.plateau = iaFacile.hasrad(jeu.tourJoueur(), jeu.getPlateau());
+			}
+			if (this.jeu.typeJoueur2() == TypeJoueur.IA_MOYEN){
+				jeu.plateau = iaMinMax.minMax(jeu.tourJoueur(), jeu.getPlateau());
+			}
+			if (this.jeu.typeJoueur2() == TypeJoueur.IA_DIFFICILE){
+			//	jeu.plateau = iaBestFirst.bestFirst(jeu.tourJoueur(), jeu.getPlateau());
+			}
 			jeu.changerLaMain();
 			this.setVerrou(false);
 			if(jeu.getPlateau().plateauPlein() || jeu.getPlateau().victoire() != 0)
