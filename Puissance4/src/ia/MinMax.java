@@ -13,8 +13,8 @@ public class MinMax {
  * L'algo min max suivi v1
  */
 /*	Algorithme DecisionMinMax (e,J) 
-	{ Décide du meilleur coup à jouer par le joueur J dans la situation e }
-	Début
+	{ Dï¿½cide du meilleur coup ï¿½ jouer par le joueur J dans la situation e }
+	Dï¿½but
 	  Pour chaque coup de CoupJouables(e,J) faire
 	    valeur[coup] = ValeurMinMax(Applique(coup,e),J,false)
 	  Fin pour
@@ -23,14 +23,14 @@ public class MinMax {
 
 	Algorithme ValeurMinMax (e,J,EstUnEtatMax) 
 	{ Calcule la valeur de e pour le joueur J selon que e EstUnEtatMax ou pas }
-	Début
+	Dï¿½but
 	  Si PartieGagnante(e,J) Alors retourner(+1)
 	  Sinon Si PartiePerdante(e,J) Alors retourner(-1)
 	        Sinon Si PartieNulle(e,J) Alors retourner(0)
 	              Sinon 
 	                 vals = vide
 	                 Pour s parmi les successeurs de e faire
-	                    ajouter ValeurMinMax(s,J,not(EstUnEtatMax))) à vals
+	                    ajouter ValeurMinMax(s,J,not(EstUnEtatMax))) ï¿½ vals
 	                 Fin pour
 	                 Si EstUnEtatMax
 	                 Alors retourner(maximum de vals)
@@ -97,7 +97,7 @@ public class MinMax {
 		int valeur;
 		//System.out.println("Joueur : "+joueur);
 		for (int i=0 ; i < this.listeCoupPossible.size(); i++){
-			valeur = valeurMinMaxLimite(this.listeCoupPossible.get(i),joueur,false,4);
+			valeur = valeurMinMaxLimite(this.listeCoupPossible.get(i),joueur,false,6);
 			/*System.out.println();
 			System.out.println(valeur+" "+i);
 			System.out.println();
@@ -111,7 +111,7 @@ public class MinMax {
 	}
 	
 	/**
-	 * La fonction valeau min-max limité a une profondeur
+	 * La fonction valeau min-max limitï¿½ a une profondeur
 	 * @param p
 	 * @param joueur
 	 * @param niveauMax
@@ -177,7 +177,7 @@ public class MinMax {
 	}
 	
 	/**
-	 * La fonction valeau min-max limité a une profondeur
+	 * La fonction valeau min-max limitï¿½ a une profondeur
 	 * @param p
 	 * @param joueur
 	 * @param niveauMax

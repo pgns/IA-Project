@@ -56,11 +56,11 @@ public class MoteurJeu {
 	
 	/**
 	 * Si c'estle tour de l'ordi on fait jouer l'ordi
-	 * C'est beugé pour l'instant:)
+	 * C'est beugï¿½ pour l'instant:)
 	 */
 	public void jouer(){
 		if (this.jeu.tourJoueur() == 1 && TypeJoueur.estOrdi(this.jeu.typeJoueur1())){
-			// on place le vérrou
+			// on place le vï¿½rrou
 			this.setVerrou(true);
 			// On regarde quel IA faire jouer
 			if (this.jeu.typeJoueur1() == TypeJoueur.IA_FACILE){
@@ -70,7 +70,7 @@ public class MoteurJeu {
 				jeu.plateau = iaMinMax.minMax(jeu.tourJoueur(), jeu.getPlateau());
 			}
 			if (this.jeu.typeJoueur1() == TypeJoueur.IA_DIFFICILE){
-			//	jeu.plateau = iaBestFirst.bestFirst(jeu.tourJoueur(), jeu.getPlateau());
+				jeu.plateau = iaBestFirst.BestFirst(jeu.tourJoueur(), jeu.getPlateau());
 			}
 			jeu.changerLaMain();
 			this.setVerrou(false);
@@ -89,7 +89,7 @@ public class MoteurJeu {
 				jeu.plateau = iaMinMax.minMax(jeu.tourJoueur(), jeu.getPlateau());
 			}
 			if (this.jeu.typeJoueur2() == TypeJoueur.IA_DIFFICILE){
-			//	jeu.plateau = iaBestFirst.bestFirst(jeu.tourJoueur(), jeu.getPlateau());
+				jeu.plateau = iaBestFirst.BestFirst(jeu.tourJoueur(), jeu.getPlateau());
 			}
 			jeu.changerLaMain();
 			this.setVerrou(false);
@@ -110,15 +110,15 @@ public class MoteurJeu {
 	}
 	
 	/**
-	 * Retourne le vérrou
-	 * @return vrai si on a un vérrou
+	 * Retourne le vï¿½rrou
+	 * @return vrai si on a un vï¿½rrou
 	 */
 	public boolean isVerrou() {
 		return verrou;
 	}
 
 	/**
-	 * Le setteur du vérrou
+	 * Le setteur du vï¿½rrou
 	 * @param verrou 
 	 */
 	public void setVerrou(boolean verrou) {
@@ -135,7 +135,7 @@ public class MoteurJeu {
 
 	/**
 	 * Le setteur de fin de partie
-	 * @param verrouFinPartie mettre vrai pour vérouiller en fin de partie
+	 * @param verrouFinPartie mettre vrai pour vï¿½rouiller en fin de partie
 	 */
 	public void setVerrouFinPartie(boolean verrouFinPartie) {
 		this.verrouFinPartie = verrouFinPartie;
