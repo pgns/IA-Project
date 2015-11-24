@@ -48,6 +48,8 @@ public class EcouteurBouton implements ActionListener{
 			this.fenetreJeu.moteurJeu.getJeu().nouvellePartie(tJ1,tJ2);
 			this.fenetreJeu.aTemps.setText("Joueur Temps(secondes)\n");
 			this.fenetreJeu.moteurJeu.setVerrouFinPartie(false);
+			this.fenetreJeu.moteurJeu.tempsJoueur1 = 0F;
+			this.fenetreJeu.moteurJeu.tempsJoueur2 = 0F;
 			//le joueur 1 commence
 			if (this.fenetreJeu.jeu.tourJoueur() == 2)
 				this.fenetreJeu.jeu.changerLaMain();
