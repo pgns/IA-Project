@@ -2,6 +2,7 @@ package ihm.jeu;
 
 import java.awt.BorderLayout;
 import javax.swing.JFrame;
+import javax.swing.JTextArea;
 
 import puissance4.Jeu;
 import puissance4.MoteurJeu;
@@ -13,6 +14,7 @@ public class FenetreJeu extends JFrame{
 	public PanelCommande pCommande;
 	public MoteurJeu moteurJeu;
 	public Jeu jeu;
+	public JTextArea aTemps;
 	
 	public FenetreJeu(Jeu j){
 		super();
@@ -20,9 +22,11 @@ public class FenetreJeu extends JFrame{
 		//chargement du layout
 		this.setLayout(new BorderLayout());
 		//création des panels
+		this.aTemps  = new JTextArea("Joueur Temps(secondes)\n");
 		this.pJeu = new PanelJeu(j);
 		this.pCommande = new PanelCommande();
 		//ajout des panels
+		this.add(aTemps,BorderLayout.WEST);
 		this.add(pJeu,BorderLayout.CENTER);
 		this.add(pCommande,BorderLayout.EAST);		
 		//ajout du moteur et du jeu
@@ -30,7 +34,7 @@ public class FenetreJeu extends JFrame{
 		this.moteurJeu = new MoteurJeu(this.jeu, this);
 		
 		//création de l'écouteur de la souris
-		EcouteurSourisJeu ecouteurSourisJeu = new EcouteurSourisJeu(pJeu.airePlateau, moteurJeu);// gestionnaireBarreEtat);
+		EcouteurSourisJeu ecouteurSourisJeu = new EcouteurSourisJeu(pJeu.airePlateau, moteurJeu,this);// gestionnaireBarreEtat);
 		pJeu.airePlateau.addMouseListener(ecouteurSourisJeu);
 		pJeu.airePlateau.addMouseMotionListener(ecouteurSourisJeu); // not in use
 		//écouteur des boutons

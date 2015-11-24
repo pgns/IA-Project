@@ -41,6 +41,10 @@ public class MoteurJeu {
 	
 	private BestFirst iaBestFirst;
 	
+	public float tempsJoueur1;
+	
+	public float tempsJoueur2;
+	
 	/**
 	 * Initialise le moteur
 	 * @param j le jeu
@@ -56,6 +60,8 @@ public class MoteurJeu {
 		this.iaMinMax = new MinMax();
 		this.iaBestFirst = new BestFirst();
 		this.iaAlphaBeta = new AlphaBeta();
+		this.tempsJoueur1 = 0F;
+		this.tempsJoueur2 = 0F;
 	}
 	
 	/**
@@ -67,6 +73,7 @@ public class MoteurJeu {
 			// on place le v�rrou
 			this.setVerrou(true);
 			// On regarde quel IA faire jouer
+			long start = System.currentTimeMillis();
 			if (this.jeu.typeJoueur1() == TypeJoueur.IA_FACILE){
 				jeu.plateau = iaFacile.hasrad(jeu.tourJoueur(), jeu.getPlateau());
 			}
@@ -80,15 +87,24 @@ public class MoteurJeu {
 				jeu.plateau = iaAlphaBeta.alphaBeta(jeu.tourJoueur(), jeu.getPlateau());
 			}
 			jeu.changerLaMain();
+			float temps = (System.currentTimeMillis() - start) / 1000F;
+			this.tempsJoueur1 += temps;
+			this.fenetreJeu.aTemps.append("Joueur 1: "+ String.valueOf(temps)+"\n");
 			this.setVerrou(false);
-			if(jeu.getPlateau().plateauPlein() || jeu.getPlateau().victoire() != 0)
+			if(jeu.getPlateau().plateauPlein() || jeu.getPlateau().victoire() != 0){
 				this.verrouFinPartie = true;
+				if (this.tempsJoueur1 > 0)
+					this.fenetreJeu.aTemps.append("Temps total j1:"+ String.valueOf(this.tempsJoueur1)+"\n");
+				if (this.tempsJoueur2 > 0)
+					this.fenetreJeu.aTemps.append("Temps total j2:"+ String.valueOf(this.tempsJoueur2));
+			}
 			else
 				this.jouer();
 		}
 		else if(this.jeu.tourJoueur() == 2 && TypeJoueur.estOrdi(this.jeu.typeJoueur2())){
 			this.setVerrou(true);
 			// On regarde quel IA faire jouer
+			long start = System.currentTimeMillis();
 			if (this.jeu.typeJoueur2() == TypeJoueur.IA_FACILE){
 				jeu.plateau = iaFacile.hasrad(jeu.tourJoueur(), jeu.getPlateau());
 			}
@@ -102,9 +118,17 @@ public class MoteurJeu {
 				jeu.plateau = iaAlphaBeta.alphaBeta(jeu.tourJoueur(), jeu.getPlateau());
 			}
 			jeu.changerLaMain();
+			float temps = (System.currentTimeMillis() - start) / 1000F;
+			this.fenetreJeu.aTemps.append("Joueur 2: "+ String.valueOf(temps)+"\n");
+			this.tempsJoueur2 += temps;
 			this.setVerrou(false);
-			if(jeu.getPlateau().plateauPlein() || jeu.getPlateau().victoire() != 0)
+			if(jeu.getPlateau().plateauPlein() || jeu.getPlateau().victoire() != 0){
 				this.verrouFinPartie = true;
+				if (this.tempsJoueur1 > 0)
+					this.fenetreJeu.aTemps.append("Temps total j1:"+ String.valueOf(this.tempsJoueur1)+"\n");
+				if (this.tempsJoueur2 > 0)
+					this.fenetreJeu.aTemps.append("Temps total j2:"+ String.valueOf(this.tempsJoueur2));
+			}
 			else
 				this.jouer();
 		}

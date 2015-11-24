@@ -19,15 +19,18 @@ public class EcouteurSourisJeu implements MouseListener, MouseMotionListener{
 	 * Le moteur du jeu
 	 */
 	MoteurJeu moteurJeu;
+	
+	FenetreJeu fJeu;
 
 	/**
 	 * Initialise l'écouteur
 	 * @param airePlateau le Plateau de jeu
 	 * @param moteurJeu le moteur du jeu
 	 */
-	EcouteurSourisJeu(AirePlateau airePlateau,MoteurJeu moteurJeu){
+	EcouteurSourisJeu(AirePlateau airePlateau,MoteurJeu moteurJeu, FenetreJeu fj){
 		this.airePlateau = airePlateau;
 		this.moteurJeu = moteurJeu;
+		this.fJeu = fj;
 	}
 	
 	public void mouseClicked(MouseEvent me) {
@@ -45,8 +48,12 @@ public class EcouteurSourisJeu implements MouseListener, MouseMotionListener{
 				//	MinMax test = new MinMax();
 				//	test.minMax(this.moteurJeu.getJeu().tourJoueur(),this.airePlateau.getJeu().getPlateau());
 				//	this.airePlateau.getJeu().getPlateau().AffichePlateau();
-					if (this.airePlateau.getJeu().getPlateau().victoire() != 0){
+					if (this.airePlateau.getJeu().getPlateau().victoire() != 0 || this.airePlateau.getJeu().getPlateau().plateauPlein() ){
 					// Mettre le verrou fin de partie
+						if (this.moteurJeu.tempsJoueur1 > 0)
+							this.fJeu.aTemps.append("Temps total j1:"+ String.valueOf(this.moteurJeu.tempsJoueur1)+"\n");
+						if (this.moteurJeu.tempsJoueur2 > 0)
+							this.fJeu.aTemps.append("Temps total j2:"+ String.valueOf(this.moteurJeu.tempsJoueur2));
 						this.moteurJeu.setVerrouFinPartie(true);
 					}
 					this.airePlateau.repaint();

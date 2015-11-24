@@ -46,6 +46,7 @@ public class EcouteurBouton implements ActionListener{
 			else
 				tJ2 = TypeJoueur.IA_EXTREME;
 			this.fenetreJeu.moteurJeu.getJeu().nouvellePartie(tJ1,tJ2);
+			this.fenetreJeu.aTemps.setText("Joueur Temps(secondes)\n");
 			this.fenetreJeu.moteurJeu.setVerrouFinPartie(false);
 			//le joueur 1 commence
 			if (this.fenetreJeu.jeu.tourJoueur() == 2)
