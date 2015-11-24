@@ -31,16 +31,20 @@ public class EcouteurBouton implements ActionListener{
 				tJ1 = TypeJoueur.IA_FACILE;
 			else if (fenetreJeu.pCommande.choixJoueur1.getSelectedIndex() == 2)
 				tJ1 = TypeJoueur.IA_MOYEN;
-			else // (fenetreJeu.pCommande.choixJoueur1.getSelectedIndex() == 3)
+			else if (fenetreJeu.pCommande.choixJoueur1.getSelectedIndex() == 3)
 				tJ1 = TypeJoueur.IA_DIFFICILE;
+			else 
+				tJ1 = TypeJoueur.IA_EXTREME;
 			if (fenetreJeu.pCommande.choixJoueur2.getSelectedIndex() == 0)
 				tJ2 = TypeJoueur.HUMAIN;
 			else if (fenetreJeu.pCommande.choixJoueur2.getSelectedIndex() == 1)
 				tJ2 = TypeJoueur.IA_FACILE;
 			else if (fenetreJeu.pCommande.choixJoueur2.getSelectedIndex() == 2)
 				tJ2 = TypeJoueur.IA_MOYEN;
-			else // (fenetreJeu.pCommande.choixJoueur2.getSelectedIndex() == 3)
+			else if (fenetreJeu.pCommande.choixJoueur2.getSelectedIndex() == 3)
 				tJ2 = TypeJoueur.IA_DIFFICILE;
+			else
+				tJ2 = TypeJoueur.IA_EXTREME;
 			this.fenetreJeu.moteurJeu.getJeu().nouvellePartie(tJ1,tJ2);
 			this.fenetreJeu.moteurJeu.setVerrouFinPartie(false);
 			//le joueur 1 commence

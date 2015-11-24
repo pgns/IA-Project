@@ -19,7 +19,7 @@ public class PanelCommande extends JPanel{
 	PanelCommande(){
 		super();
 		this.bnouvellePartie = new Button("Nouvelle Partie");
-		String[] listeChoixJoueur = {"Humain","IA facile","IA moyen","IA fort"};
+		String[] listeChoixJoueur = {"Humain","IA facile","IA moyen","IA fort","Skynet"};
 		this.choixJoueur1 = new JComboBox<String>(listeChoixJoueur);
 		this.choixJoueur2 = new JComboBox<String>(listeChoixJoueur);
 		this.setLayout(new BorderLayout());

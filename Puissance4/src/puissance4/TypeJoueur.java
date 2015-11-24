@@ -7,7 +7,8 @@ public enum TypeJoueur {
 	HUMAIN("Humain"),
 	IA_FACILE("IA facile"),
 	IA_MOYEN("IA moyen"),
-	IA_DIFFICILE("IA fort");
+	IA_DIFFICILE("IA fort"), 
+	IA_EXTREME("Skynet");
 	
 	private String stringJoeuer;
 	
@@ -21,7 +22,7 @@ public enum TypeJoueur {
 	}
 	
 	public static boolean estOrdi(TypeJoueur tj){
-		return tj == TypeJoueur.IA_FACILE || tj == TypeJoueur.IA_MOYEN || tj == TypeJoueur.IA_DIFFICILE;
+		return tj == TypeJoueur.IA_FACILE || tj == TypeJoueur.IA_MOYEN || tj == TypeJoueur.IA_DIFFICILE || tj == TypeJoueur.IA_EXTREME;
 	}
 	
 	public String toString(){

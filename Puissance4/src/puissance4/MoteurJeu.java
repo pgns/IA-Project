@@ -4,6 +4,7 @@ import ia.MinMax;
 import ia.BestFirst;
 import ia.Hasard;
 import ihm.jeu.FenetreJeu;
+import ia.AlphaBeta;
 
 /**
  * 
@@ -36,6 +37,8 @@ public class MoteurJeu {
 	
 	private Hasard iaFacile;
 	
+	private AlphaBeta iaAlphaBeta;
+	
 	private BestFirst iaBestFirst;
 	
 	/**
@@ -52,6 +55,7 @@ public class MoteurJeu {
 		this.iaFacile = new Hasard();
 		this.iaMinMax = new MinMax();
 		this.iaBestFirst = new BestFirst();
+		this.iaAlphaBeta = new AlphaBeta();
 	}
 	
 	/**
@@ -72,6 +76,9 @@ public class MoteurJeu {
 			if (this.jeu.typeJoueur1() == TypeJoueur.IA_DIFFICILE){
 				jeu.plateau = iaBestFirst.BestFirst(jeu.tourJoueur(), jeu.getPlateau());
 			}
+			if (this.jeu.typeJoueur1() == TypeJoueur.IA_EXTREME){
+				jeu.plateau = iaAlphaBeta.alphaBeta(jeu.tourJoueur(), jeu.getPlateau());
+			}
 			jeu.changerLaMain();
 			this.setVerrou(false);
 			if(jeu.getPlateau().plateauPlein() || jeu.getPlateau().victoire() != 0)
@@ -90,6 +97,9 @@ public class MoteurJeu {
 			}
 			if (this.jeu.typeJoueur2() == TypeJoueur.IA_DIFFICILE){
 				jeu.plateau = iaBestFirst.BestFirst(jeu.tourJoueur(), jeu.getPlateau());
+			}
+			if (this.jeu.typeJoueur1() == TypeJoueur.IA_EXTREME){
+				jeu.plateau = iaAlphaBeta.alphaBeta(jeu.tourJoueur(), jeu.getPlateau());
 			}
 			jeu.changerLaMain();
 			this.setVerrou(false);

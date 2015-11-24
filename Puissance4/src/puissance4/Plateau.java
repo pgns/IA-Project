@@ -415,4 +415,53 @@ public class Plateau implements Cloneable {
 		}
 		return true;
 	}
+	
+	
+	
+	
+	// juste des teste pour moi ...
+	public int eval(byte joueur){
+		int[] score = new int[2];
+		score[0]=0;
+		score[1]=0;
+		int j, a=0;
+		byte pions;
+		int note;
+		
+		
+		//== parcourt en hauteur ==//
+		for(int i=0;i<7;i++){
+			pions = tableau[i][5];
+			j=0; note=0;
+			while(tableau[i][j] != 0){
+				if(tableau[i][j] == pions){
+					a++;
+					if(a>1)
+						note += 20;
+				}
+				else{
+					a=1;
+					score[pions]=note;
+					//if()
+					pions = tableau[i][j];
+				}
+				j++;
+			}
+			
+		}
+		if(joueur == 1)
+			return score[0] - score[1];
+		else
+			return score[1] - score[0];
+	}
+		
+		
+		
+		
+		
+	
+	
+	
+	
+	
 }

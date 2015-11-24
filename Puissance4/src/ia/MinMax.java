@@ -166,7 +166,7 @@ public class MinMax {
 					for(i = 0 ; i < listeValeur.size() ; i++)
 						if (listeValeur.get(i) > max)
 							max = listeValeur.get(i);
-					return -max;
+					return max * -1;
 				}
 			}
 		/*else{
