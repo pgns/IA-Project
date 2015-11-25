@@ -5,13 +5,13 @@ import puissance4.Plateau;
 public class AlphaBeta {
 	ListeCoupPossible listeCoupPossible;
 	
-	int profondeurArbre =1;
+	int profondeurArbre =9;
 	public AlphaBeta(){
 		
 	}
 	
 	public Plateau alphaBeta(byte joueur, Plateau plateau){
-		System.out.println("Debut de l'algo ALPHA-BETA");
+		//System.out.println("Debut de l'algo ALPHA-BETA");
 		this.listeCoupPossible = new ListeCoupPossible(plateau,joueur);
 		int indice_max=0;
 		int valeur;
@@ -19,15 +19,11 @@ public class AlphaBeta {
 		int alpha = Integer.MIN_VALUE;;
 		int beta = Integer.MAX_VALUE;;
 		
-		//System.out.println(joueur);
-		
 		// *<== ici on concidere que l'on entre sur le premier noeud max
 		// chaqu'un des fils seront donc des noeud min => false
 		for (int i=0 ; i < this.listeCoupPossible.size(); i++){
 			valeur = ValeurAlphaBeta(this.listeCoupPossible.get(i),joueur,false,profondeurArbre,alpha,beta,joueur);
-			System.out.println(i +" MAX val:"+valeur);
 			if(valeur > alpha){			//On est sur un noeud MAX
-				//System.out.println("ding");
 				alpha = valeur;			// MAJ de Alpha
 				indice_max = i;			// on enregistre l'indice
 			}
@@ -51,12 +47,8 @@ public class AlphaBeta {
 			if (p.plateauPlein())
 				return 0;
 			else{	
-				if (profondeur == 0){
-					int x = p.eval(player);
-					System.out.println("evaaal : "+x);
-					return x;
-					
-				}
+				if (profondeur == 0)
+					return p.eval(player);
 				
 				if (joueur == 1)
 					joueurNext = 2;
