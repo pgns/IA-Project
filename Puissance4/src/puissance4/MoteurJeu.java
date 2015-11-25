@@ -91,7 +91,7 @@ public class MoteurJeu {
 			this.tempsJoueur1 += temps;
 			this.fenetreJeu.aTemps.append("Joueur 1: "+ String.valueOf(temps)+"\n");
 			this.setVerrou(false);
-			if(jeu.getPlateau().plateauPlein() || jeu.getPlateau().victoire() != 0){
+			if((jeu.getPlateau().plateauPlein() || jeu.getPlateau().victoire() != 0) && !this.verrouFinPartie){
 				this.verrouFinPartie = true;
 				if (this.tempsJoueur1 > 0)
 					this.fenetreJeu.aTemps.append("Temps total j1:"+ String.valueOf(this.tempsJoueur1)+"\n");

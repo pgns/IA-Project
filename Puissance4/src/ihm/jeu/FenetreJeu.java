@@ -45,7 +45,7 @@ public class FenetreJeu extends JFrame{
 		//On fixe la taille de la fenêtre
 		this.setSize(900, 820);
 		//On n'autorise pas le redimensionnement de la fenetre
-		this.setResizable(false);
+	//	this.setResizable(false);
 		//On centre la fenêtre
 		this.setLocationRelativeTo(null);
 		//On défini l'icone
