@@ -131,7 +131,7 @@ public class MoteurTest{
 			this.tempsJoueur2 = 0F;
 			this.jeu = new Jeu(joueur1,joueur2);
 			System.out.println("==============================");
-			System.out.println("Lancement du test numero "+ i+1);
+			System.out.println("Lancement du test numero "+ (i+1));
 			lancerPartie();
 			switch (this.jeu.getPlateau().victoire()){
 				case 1: System.out.println("Victoire du joueur 1");
