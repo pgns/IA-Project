@@ -15,10 +15,8 @@ public class Test {
 		j = new Jeu();
 		FenetreJeu f = new FenetreJeu(j);
 
-		/**
-		 * Pour tester les IA entre eux un certain nombre de fois
-		 */
-		MoteurTest mt = new MoteurTest();
+		//Pour tester les IA entre eux un certain nombre de fois en mode console, à décomenter pour utiliser
+		//MoteurTest mt = new MoteurTest();
 		
 	}
 	
