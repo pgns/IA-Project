@@ -419,7 +419,10 @@ public class Plateau implements Cloneable {
 	
 	
 	
-	// juste des teste pour moi ...
+	// === Evalue une partie === //
+	// note le jeu de J1 et J2
+	// retourne J1-J2
+	// l'algo MinMax s'occupe de gerer la note( de l'inverser( J2 - J1)) si j2 été en train de jouer son coup
 	public int eval(byte joueur){
 		int[] score = new int[3];
 		score[0]=0;
@@ -440,10 +443,12 @@ public class Plateau implements Cloneable {
 					a++;
 					if(a>1)
 						note += 20;
+					/*if(a==4)
+						note+=20;*/
 				}
 				else{
 					a=1;
-					score[pions]=note;
+					score[pions]+=note;
 					note=0;
 					pions = tableau[j][i];
 				}
@@ -455,34 +460,123 @@ public class Plateau implements Cloneable {
 			j=0;
 			pions = tableau[i][j];
 			note=0;
-			while(j<7 && tableau[i][j] != 0){
+			a=0;
+			while(j<7){
 				if(tableau[i][j] == pions){
 					a++;
 					if(a>1)
 						note += 20;
+					/*if(a==4)
+						note+=20;*/
 				}
 				else{
 					a=1;
-					score[pions]=note;
+					score[pions]+=note;
 					note=0;
 					pions = tableau[i][j];
 				}
 				j++;
 			}
 		}
+		//========== parcourt en diagonnal =========//
+		int k;
+		//-- parcourt bas=>haut // gauche=>droite --//
+		// parcourt de la 1er moitiée
+		for(int i=0;i<6;i++){
+			j = 0;
+			k = i;
+			a = 0;
+			note = 0;
+			pions = tableau[k][j];
+			while(j<=i){
+				if(tableau[k][j] == pions){
+					a++;
+					if(a>1)
+						note += 20;
+				}else{
+					a = 1;
+					score[pions]+=note;
+					note=0;
+					pions = tableau[k][j];
+				}
+				j++;
+				k--;
+			}
+		}
+		// parcourt de la 2nd moitiée
+		for(int i=1;i<7;i++){
+			j = 5;
+			k = i;
+			a = 0;
+			note = 0;
+			pions = tableau[j][k];
+			while(j >= (i - 1)){
+				if(tableau[j][k] == pions){
+					a++;
+					if(a>1)
+						note += 20;
+				}else{
+					a = 1;
+					score[pions]+=note;
+					note=0;
+					pions = tableau[j][k];
+				}
+				j--;
+				k++;
+			}
+		}
+		//------------------ END -------------------//
+		//-- parcourt haut=>bas // gauche=>droite --//
+		for(int i=0;i<6;i++){
+			j = i;
+			k = 0;
+			a = 0;
+			note = 0;
+			pions = tableau[j][k];
+			while(j<6){
+				if(tableau[j][k] == pions){
+					a++;
+					if(a>1)
+						note += 20;
+				}else{
+					a = 1;
+					score[pions]+=note;
+					note=0;
+					pions = tableau[j][k];
+				}
+				j++;
+				k++;
+			}
+		}
+		for(int i=1;i<7;i++){
+			j = i;
+			k = 0;
+			a = 0;
+			note = 0;
+			pions = tableau[k][j];
+			while(j<7){
+				if(tableau[k][j] == pions){
+					a++;
+					if(a>1)
+						note += 20;
+				}else{
+					a = 1;
+					score[pions]+=note;
+					note=0;
+					pions = tableau[k][j];
+				}
+				j++;
+				k++;
+			}
+		}
+		//====== END  parcourt en diagonnal ========//
+		// on retourne la note (on soustrait les points de j1 a j2)
+		// si on evaluait j2, c'est le minmax qui inverse la note
+		
+		
 		if(joueur == 1)
-			return score[0] - score[1];
+			return score[1] - score[2];
 		else
-			return score[1] - score[0];
+			return score[2] - score[1];
 	}
-		
-		
-		
-		
-		
-	
-	
-	
-	
-	
 }

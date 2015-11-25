@@ -4,7 +4,8 @@ import puissance4.Plateau;
 
 public class AlphaBeta {
 	ListeCoupPossible listeCoupPossible;
-
+	
+	int profondeurArbre =1;
 	public AlphaBeta(){
 		
 	}
@@ -23,7 +24,7 @@ public class AlphaBeta {
 		// *<== ici on concidere que l'on entre sur le premier noeud max
 		// chaqu'un des fils seront donc des noeud min => false
 		for (int i=0 ; i < this.listeCoupPossible.size(); i++){
-			valeur = ValeurAlphaBeta(this.listeCoupPossible.get(i),joueur,false,4,alpha,beta,joueur);
+			valeur = ValeurAlphaBeta(this.listeCoupPossible.get(i),joueur,false,profondeurArbre,alpha,beta,joueur);
 			System.out.println(i +" MAX val:"+valeur);
 			if(valeur > alpha){			//On est sur un noeud MAX
 				//System.out.println("ding");
@@ -43,15 +44,19 @@ public class AlphaBeta {
 		// test si p est une feuille
 		if (joueurVictoir == joueur)
 			if(!niveauMax)
-				return Integer.MAX_VALUE;
+				return Integer.MAX_VALUE - (profondeurArbre - profondeur);
 			else
-				return Integer.MIN_VALUE;
+				return Integer.MIN_VALUE + (profondeurArbre - profondeur);
 		else
 			if (p.plateauPlein())
 				return 0;
 			else{	
-				if (profondeur == 0)
-					return p.eval(player);
+				if (profondeur == 0){
+					int x = p.eval(player);
+					System.out.println("evaaal : "+x);
+					return x;
+					
+				}
 				
 				if (joueur == 1)
 					joueurNext = 2;
