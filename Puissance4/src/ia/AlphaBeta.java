@@ -5,7 +5,7 @@ import puissance4.Plateau;
 public class AlphaBeta {
 	ListeCoupPossible listeCoupPossible;
 	
-	int profondeurArbre =9;
+	int profondeurArbre =7;
 	public AlphaBeta(){
 		
 	}

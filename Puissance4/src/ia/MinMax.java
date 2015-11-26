@@ -10,7 +10,7 @@ import utils.Coordonnees;
 public class MinMax {
 	
 	ListeCoupPossible listeCoupPossible;
-	int profondeurArbre = 2;
+	int profondeurArbre = 4;
 	
 	
 	public MinMax(){
@@ -32,7 +32,7 @@ public class MinMax {
 		for (int i=0 ; i < this.listeCoupPossible.size(); i++){
 			valeur = valeurMinMaxLimite(this.listeCoupPossible.get(i),joueur,false,profondeurArbre,joueur);
 			
-			System.out.println("i:"+i+" Val : "+valeur);
+			//System.out.println("i:"+i+" Val : "+valeur);
 			if (valeur > valeur_max){
 				valeur_max = valeur;
 				indice_max = i;
