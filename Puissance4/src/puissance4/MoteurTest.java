@@ -191,7 +191,7 @@ public class MoteurTest{
 		//on commence par le joueur 1
 		this.jeu.changerLaMain();
 		// tant que la partie n'est pas finie
-		while (! this.jeu.partieFini() || ! this.jeu.getPlateau().plateauPlein()) {
+		while (! this.jeu.partieFini() && ! this.jeu.getPlateau().plateauPlein()) {
 			// si c'est le tour du joueur 1 on regarde quel IA faire jouer
 			this.jeu.changerLaMain();
 			if (this.jeu.tourJoueur() == 1){
