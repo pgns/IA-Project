@@ -84,7 +84,8 @@ public class EcouteurBouton implements ActionListener{
 			else
 				heuristique3J2 = false;
 			
-			this.fenetreJeu.moteurJeu.getJeu().nouvellePartie(tJ1,tJ2);
+			
+			this.fenetreJeu.moteurJeu.getJeu().nouvellePartie(tJ1,tJ2,heuristique1J1,heuristique2J1,heuristique3J1,heuristique1J2,heuristique2J2,heuristique3J2);
 			this.fenetreJeu.aTemps.setText("Joueur Temps(secondes)\n");
 			this.fenetreJeu.moteurJeu.setVerrouFinPartie(false);
 			this.fenetreJeu.moteurJeu.tempsJoueur1 = 0F;

@@ -61,10 +61,11 @@ public class Jeu {
 		 * @param j1 type du joueur 1
 		 * @param j2 type du joueur 2
 		 */
-		public void nouvellePartie(TypeJoueur j1,TypeJoueur j2){
+		public void nouvellePartie(TypeJoueur j1,TypeJoueur j2, boolean H1J1, boolean H2J1, boolean H3J1, boolean H1J2, boolean H2J2, boolean H3J2){
 			typeJ1 = j1;
 			typeJ2 = j2;
 			this.getPlateau().initialisePlateau();
+			this.getPlateau().initialiseHeuristique(H1J1, H2J1, H3J1, H1J2, H2J2, H3J2);
 		}
 
 		/**

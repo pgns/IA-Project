@@ -73,6 +73,16 @@ public class Plateau implements Cloneable {
 		cord4Victoire = new Coordonnees (-1,-1);
 	}
 
+	public void initialiseHeuristique(boolean H1J1, boolean H2J1, boolean H3J1, boolean H1J2, boolean H2J2, boolean H3J2){
+		heuristique1J1 = H1J1;
+		heuristique2J1 = H2J1;
+		heuristique3J1 = H3J1;
+		
+		heuristique1J2 = H1J2;
+		heuristique2J2 = H2J2;
+		heuristique3J2 = H3J2;
+	}
+	
 	/**
 	 * Ajoute un pion pour un joueur donné dans la colonne col
 	 * @param joueur j
@@ -91,6 +101,8 @@ public class Plateau implements Cloneable {
 			tableau[i][col] = joueur;
 		}
 	}
+	
+	
 	
 	/**
 	 * Fonction pour construire la liste des coups possibles pour l'IA
