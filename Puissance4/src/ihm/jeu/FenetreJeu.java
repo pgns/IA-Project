@@ -3,7 +3,6 @@ package ihm.jeu;
 import java.awt.BorderLayout;
 import javax.swing.JFrame;
 import javax.swing.JTextArea;
-
 import puissance4.Jeu;
 import puissance4.MoteurJeu;
 
@@ -44,8 +43,6 @@ public class FenetreJeu extends JFrame{
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//On fixe la taille de la fenêtre
 		this.setSize(900, 820);
-		//On n'autorise pas le redimensionnement de la fenetre
-	//	this.setResizable(false);
 		//On centre la fenêtre
 		this.setLocationRelativeTo(null);
 		//On la rend visible

@@ -23,7 +23,6 @@ public class PanelCommande extends JPanel{
 		this.choixJoueur1 = new JComboBox<String>(listeChoixJoueur);
 		this.choixJoueur2 = new JComboBox<String>(listeChoixJoueur);
 		this.setLayout(new BorderLayout());
-		
 		JPanel p1 = new JPanel();
 		p1.setBackground(Color.darkGray);
 		p1.add(bnouvellePartie);
@@ -37,10 +36,6 @@ public class PanelCommande extends JPanel{
 		p3.add(choixJoueur2);
 		this.add(p1, BorderLayout.NORTH);
 		this.add(p2, BorderLayout.CENTER);
-		this.add(p3, BorderLayout.SOUTH);
-		
+		this.add(p3, BorderLayout.SOUTH);	
 	}
-
-
-	
 }

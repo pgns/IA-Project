@@ -14,6 +14,10 @@ import javax.swing.JComponent;
 import puissance4.Jeu;
 
 @SuppressWarnings("serial")
+
+/**
+ * L'aire plateau graphique
+ */
 public class AirePlateau extends JComponent{
 	
 	/**
@@ -89,24 +93,20 @@ public class AirePlateau extends JComponent{
 			for (j = 0 ; j < Constantes.NOMBRE_COLONNE_JEUX; j++) {
 				if (! jeu.getPlateau().estCaseVide(i, j)){
 					if (jeu.getPlateau().estCaseJoueur1(i, j)) {
-					/*	pour le dessin graphique
-						g2d.setColor(Constantes.COULEUR_JOUEUR_1); 
-					 */
 						g2d.drawImage(imageJoueur1, j*largeurCase+2, i*hauteurCase+2, largeurCase-4, hauteurCase-4, this);
 					}
 					else {
 						g2d.drawImage(imageJoueur2, j*largeurCase+2, i*hauteurCase+2, largeurCase-4, hauteurCase-4, this);
-					/* pour le dessin graphique
-						g2d.setColor(Constantes.COULEUR_JOUEUR_2);
-						*/
 					}
-				// pour le desin graphique	
-				//	g2d.fillOval(j*largeurCase,i*hauteurCase,largeurCase, hauteurCase);
 				}
 			}	
 		}
 	}
 	
+	/**
+	 * colorie les cases victoires
+	 * @param g2d
+	 */
 	synchronized public void dessinerVictoire(Graphics g2d){
 		if (jeu.getPlateau().cordVictoire()){
 			g2d.setColor(Color.ORANGE);

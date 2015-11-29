@@ -20,7 +20,9 @@ public class EcouteurBouton implements ActionListener{
 		this.fenetreJeu = fj;
 	}
 	
-	
+	/**
+	 * l'écouteur de boutons
+	 */
 	public void actionPerformed(ActionEvent ae) {
 		if(ae.getSource() == fenetreJeu.pCommande.bnouvellePartie){
 			TypeJoueur tJ1;

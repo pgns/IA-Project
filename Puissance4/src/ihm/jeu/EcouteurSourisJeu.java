@@ -19,7 +19,9 @@ public class EcouteurSourisJeu implements MouseListener, MouseMotionListener{
 	 * Le moteur du jeu
 	 */
 	MoteurJeu moteurJeu;
-	
+	/**
+	 * La fenetre de jeu
+	 */
 	FenetreJeu fJeu;
 
 	/**
@@ -33,8 +35,9 @@ public class EcouteurSourisJeu implements MouseListener, MouseMotionListener{
 		this.fJeu = fj;
 	}
 	
+	
 	public void mouseClicked(MouseEvent me) {
-		// si ce n'est pas la fin de la partie
+		// si ce n'est pas la fin de la partie et si ce n'est pas l'ia qui joue
 		if (! this.moteurJeu.isVerrouFinPartie() && !this.moteurJeu.isVerrou()){
 			// on calculle les cordonnées du tableau
 			Coordonnees cord = this.airePlateau.coordonneesClic(me.getX(), me.getY());
@@ -45,9 +48,6 @@ public class EcouteurSourisJeu implements MouseListener, MouseMotionListener{
 					// si l'ajout du pion est possible, on effectue le déplacement
 					this.airePlateau.getJeu().getPlateau().ajoutePion(this.moteurJeu.getJeu().tourJoueur(),cord.getColonne());
 					this.moteurJeu.getJeu().changerLaMain();
-				//	MinMax test = new MinMax();
-				//	test.minMax(this.moteurJeu.getJeu().tourJoueur(),this.airePlateau.getJeu().getPlateau());
-				//	this.airePlateau.getJeu().getPlateau().AffichePlateau();
 					if (this.airePlateau.getJeu().getPlateau().victoire() != 0 || this.airePlateau.getJeu().getPlateau().plateauPlein() ){
 					// Mettre le verrou fin de partie
 						if (this.moteurJeu.tempsJoueur1 > 0)
