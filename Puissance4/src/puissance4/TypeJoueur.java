@@ -6,9 +6,8 @@ package puissance4;
 public enum TypeJoueur {
 	HUMAIN("Humain"),
 	IA_FACILE("IA facile"),
-	IA_MOYEN("IA moyen"),
-	IA_DIFFICILE("IA fort"), 
-	IA_EXTREME("Skynet");
+	IA_MOYEN("IA MinMax"),
+	IA_EXTREME("IA Alpha-Beta");
 	
 	private String stringJoeuer;
 	
@@ -27,7 +26,7 @@ public enum TypeJoueur {
 	 * @return vrai si le joueur n'est pas huamin
 	 */
 	public static boolean estOrdi(TypeJoueur tj){
-		return tj == TypeJoueur.IA_FACILE || tj == TypeJoueur.IA_MOYEN || tj == TypeJoueur.IA_DIFFICILE || tj == TypeJoueur.IA_EXTREME;
+		return tj == TypeJoueur.IA_FACILE || tj == TypeJoueur.IA_MOYEN || tj == TypeJoueur.IA_EXTREME;
 	}
 	
 	public String toString(){
