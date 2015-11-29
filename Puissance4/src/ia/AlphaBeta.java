@@ -84,5 +84,27 @@ public class AlphaBeta {
 				}
 			}
 				//----------------------- FIN ---------------------------
-	}	
+	}
+	
+	public Plateau alphaBeta(byte joueur, Plateau plateau, int prof){
+		//System.out.println("Debut de l'algo ALPHA-BETA");
+		this.profondeurArbre = prof;
+		this.listeCoupPossible = new ListeCoupPossible(plateau,joueur);
+		int indice_max=0;
+		int valeur;
+		
+		int alpha = Integer.MIN_VALUE;;
+		int beta = Integer.MAX_VALUE;;
+		
+		// *<== ici on concidere que l'on entre sur le premier noeud max
+		// chaqu'un des fils seront donc des noeud min => false
+		for (int i=0 ; i < this.listeCoupPossible.size(); i++){
+			valeur = ValeurAlphaBeta(this.listeCoupPossible.get(i),joueur,false,profondeurArbre,alpha,beta,joueur);
+			if(valeur > alpha){			//On est sur un noeud MAX
+				alpha = valeur;			// MAJ de Alpha
+				indice_max = i;			// on enregistre l'indice
+			}
+		}
+		return this.listeCoupPossible.get(indice_max);	
+	}
 }

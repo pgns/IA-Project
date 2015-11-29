@@ -3,6 +3,7 @@ package com;
 import ihm.jeu.FenetreJeu;
 import puissance4.Jeu;
 import puissance4.MoteurTest;
+import puissance4.MoteurTestProfondeur;
 
 /**
  * Le main
@@ -16,8 +17,8 @@ public class Test {
 		FenetreJeu f = new FenetreJeu(j);
 
 		//Pour tester les IA entre eux un certain nombre de fois en mode console
-		MoteurTest mt = new MoteurTest();
-		
+		//MoteurTest mt = new MoteurTest();
+		MoteurTestProfondeur mtp = new MoteurTestProfondeur();
 	}
 	
 }

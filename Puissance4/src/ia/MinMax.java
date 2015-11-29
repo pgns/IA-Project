@@ -98,4 +98,24 @@ public class MinMax {
 			}
 	}
 	
+	public Plateau minMax(byte joueur, Plateau plateau,int prof){
+		this.profondeurArbre = prof;
+		this.listeCoupPossible = new ListeCoupPossible(plateau,joueur);
+		
+		int valeur_max = Integer.MIN_VALUE;
+		int indice_max=0;
+		int valeur;
+		for (int i=0 ; i < this.listeCoupPossible.size(); i++){
+			valeur = valeurMinMaxLimite(this.listeCoupPossible.get(i),joueur,false,profondeurArbre,joueur);
+			
+			//System.out.println("i:"+i+" Val : "+valeur);
+			if (valeur > valeur_max){
+				valeur_max = valeur;
+				indice_max = i;
+			}
+		}
+		return this.listeCoupPossible.get(indice_max);
+	}
+	
+	
 }
