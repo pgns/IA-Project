@@ -49,6 +49,15 @@ public class Plateau implements Cloneable {
 		cord4Victoire = new Coordonnees (-1,-1);
 	}
 	
+	// Les heuristique choisit pour la partie en cours
+	boolean heuristique1J1;
+	boolean heuristique2J1;
+	boolean heuristique3J1;
+	
+	boolean heuristique1J2;
+	boolean heuristique2J2;
+	boolean heuristique3J2;
+	
 	/**
 	 * Initialise le tableu avec des 0
 	 */
@@ -633,6 +642,209 @@ public class Plateau implements Cloneable {
 						note += 10;
 					if(a>2)
 						note+=25;
+				}else{
+					a = 1;
+					score[pions]+=note;
+					note=0;
+					pions = tableau[k][j];
+				}
+				j++;
+				k++;
+			}
+		}
+		//====== END  parcourt en diagonnal ========//
+		// on retourne la note (on soustrait les points de j1 a j2)
+		// si on evaluait j2, c'est le minmax qui inverse la note
+		
+		
+		if(joueur == 1)
+			return score[1] - score[2];
+		else
+			return score[2] - score[1];
+	}
+	
+	//heuristique 1 : les pionts sont regroupé
+	//heuristique 2 : les pionts sont aligné
+	//heuristique 3 : prend en compte les bords du plateau
+	public int evalHeuristique(byte joueur){
+		int[] score = new int[3];
+		score[0]=0;
+		score[1]=0;
+		score[2]=0;
+		int j, a=0;
+		byte pions;
+		int note;
+		boolean heuristique1, heuristique2, heuristique3;
+		//MAJ des heuristiques
+		if(joueur == 1){
+			heuristique1 = heuristique1J1;
+			heuristique2 = heuristique2J1;
+			heuristique3 = heuristique3J1;	
+		}
+		else{
+			heuristique1 = heuristique1J2;
+			heuristique2 = heuristique2J2;
+			heuristique3 = heuristique3J2;	
+		}
+		
+		//== parcourt en hauteur ==//
+		for(int i=0;i<7;i++){
+			j=5;
+			pions = tableau[j][0];
+			note=0;
+			while((j > -1) && (tableau[j][i] != 0)){
+				if(tableau[j][i] == pions){
+					a++;
+					if(heuristique1 || heuristique2)
+						if(a>1)
+							note +=10;
+					if(heuristique2)
+						if(a>2)
+							note+=25;
+					if(heuristique3)
+						if(a==2)
+							if(j>1)
+								if(tableau[j-2][i] == 0 && tableau[j-1][i] == 0)
+									note+=30;
+				}
+				else{
+					a=1;
+					score[pions]+=note;
+					note=0;
+					pions = tableau[j][i];
+				}
+				j--;
+			}
+		}
+		//== parcourt en longueur ==//	
+		for(int i=0;i<6;i++){
+			j=0;
+			pions = tableau[i][j];
+			note=0;
+			a=0;
+			while(j<7){
+				if(tableau[i][j] == pions){
+					a++;
+					if(heuristique1 || heuristique2)
+						if(a>1)
+							note += 10;
+					if(heuristique2)
+						if(a>2)
+							note+=25;
+					if(heuristique3)
+						if(a==2)
+							if(j>1 && j<5)
+								if(tableau[i][j+1] == 0 && tableau[i][j+2] == 0)
+									note+=30;
+								else if(tableau[i][j-1]==0 && tableau[i][j-2]==0)
+									note+=30;
+				}
+				else{
+					a=1;
+					score[pions]+=note;
+					note=0;
+					pions = tableau[i][j];
+				}
+				j++;
+			}
+		}
+		//========== parcourt en diagonnal =========//
+		int k;
+		//-- parcourt bas=>haut // gauche=>droite --//
+		// parcourt de la 1er moitiée
+		for(int i=0;i<6;i++){
+			j = 0;
+			k = i;
+			a = 0;
+			note = 0;
+			pions = tableau[k][j];
+			while(j<=i){
+				if(tableau[k][j] == pions){
+					a++;
+					if(heuristique1 || heuristique2)
+						if(a>1)
+							note += 10;
+					if(heuristique2)
+					if(a>2)
+						note+=25;
+				}else{
+					a = 1;
+					score[pions]+=note;
+					note=0;
+					pions = tableau[k][j];
+				}
+				j++;
+				k--;
+			}
+		}
+		// parcourt de la 2nd moitiée
+		for(int i=1;i<7;i++){
+			j = 5;
+			k = i;
+			a = 0;
+			note = 0;
+			pions = tableau[j][k];
+			while(j >= (i - 1)){
+				if(tableau[j][k] == pions){
+					a++;
+					if(heuristique1 || heuristique2)
+						if(a>1)
+							note += 10;
+					if(heuristique2)
+					if(a>2)
+						note+=25;
+				}else{
+					a = 1;
+					score[pions]+=note;
+					note=0;
+					pions = tableau[j][k];
+				}
+				j--;
+				k++;
+			}
+		}
+		//------------------ END -------------------//
+		//-- parcourt haut=>bas // gauche=>droite --//
+		for(int i=0;i<6;i++){
+			j = i;
+			k = 0;
+			a = 0;
+			note = 0;
+			pions = tableau[j][k];
+			while(j<6){
+				if(tableau[j][k] == pions){
+					a++;
+					if(heuristique1 || heuristique2)
+						if(a>1)
+							note += 10;
+					if(heuristique2)
+						if(a>2)
+							note+=25;
+				}else{
+					a = 1;
+					score[pions]+=note;
+					note=0;
+					pions = tableau[j][k];
+				}
+				j++;
+				k++;
+			}
+		}
+		for(int i=1;i<7;i++){
+			j = i;
+			k = 0;
+			a = 0;
+			note = 0;
+			pions = tableau[k][j];
+			while(j<7){
+				if(tableau[k][j] == pions){
+					a++;
+					if(heuristique1 || heuristique2)
+						if(a>1)
+							note += 10;
+					if(heuristique2)
+						if(a>2)
+							note+=25;
 				}else{
 					a = 1;
 					score[pions]+=note;

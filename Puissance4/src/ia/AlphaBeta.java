@@ -48,7 +48,7 @@ public class AlphaBeta {
 				return 0;
 			else{	
 				if (profondeur == 0)
-					return p.eval(player);
+					return p.evalHeuristique(player);
 				
 				if (joueur == 1)
 					joueurNext = 2;
