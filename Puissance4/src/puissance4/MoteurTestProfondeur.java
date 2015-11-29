@@ -6,6 +6,9 @@ import ia.AlphaBeta;
 import ia.Hasard;
 import ia.MinMax;
 
+/**
+ * Classe permmetant d'effectuer des test en faisant varier la profondeur
+ */
 public class MoteurTestProfondeur {
 	/**
 	 * Le jeu

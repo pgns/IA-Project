@@ -1,5 +1,7 @@
 package com;
 
+import java.util.Scanner;
+
 import ihm.jeu.FenetreJeu;
 import puissance4.Jeu;
 import puissance4.MoteurTest;
@@ -15,10 +17,22 @@ public class Test {
 	public static void main(String[] args) {
 		j = new Jeu();
 		FenetreJeu f = new FenetreJeu(j);
-
+		
+		Scanner input1 = new Scanner(System.in);
+		String str;
 		//Pour tester les IA entre eux un certain nombre de fois en mode console
-		//MoteurTest mt = new MoteurTest();
-		MoteurTestProfondeur mtp = new MoteurTestProfondeur();
+		while(true){
+			do{
+				System.out.println("Entrez p pour lancer les tests sur la profondeur\nEntrez t pour lancer lest test entre les IA");
+				str=input1.nextLine();
+			} while ( ! str.contentEquals("p") && ! str.contentEquals("t"));
+			if (str.contentEquals("p")){
+				MoteurTestProfondeur mtp = new MoteurTestProfondeur();
+			}
+			if (str.contentEquals("t")){
+				MoteurTest mt = new MoteurTest();
+			}
+		}
 	}
 	
 }

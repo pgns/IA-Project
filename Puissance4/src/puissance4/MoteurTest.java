@@ -78,6 +78,36 @@ public class MoteurTest{
 	private int nbTest;
 	
 	/**
+	 * Heuristique 1 joueur 1
+	 */
+	private boolean h1j1;
+	
+	/**
+	 * Heuristique 2 joueur 1
+	 */
+	private boolean h2j1;
+	
+	/**
+	 * Heuristique 3 joueur 1
+	 */
+	private boolean h3j1;
+	
+	/**
+	 * Heuristique 1 joueur 
+	 */
+	private boolean h1j2;
+	
+	/**
+	 * Heuristique 2 joueur 2
+	 */
+	private boolean h2j2;
+	
+	/**
+	 * Heuristique 3 joueur 2
+	 */
+	private boolean h3j2;
+	
+	/**
 	 * Le nombre de victoires du joueur 1
 	 */
 	private int nbVictoireJoueur1;
@@ -104,21 +134,19 @@ public class MoteurTest{
 		System.out.println("Entrez le type du prmier IA :");
 		int j1;
 		do {
-			System.out.println("(IA facile => 1 IA moyen => 2 IA fort => 3 Skynet => 4)");
+			System.out.println("(IA facile => 1 IA MinMax => 2 IA Alphabeta => 3)");
 			j1 = input.nextInt();
-		} while ( j1 < 1 || j1 > 4 );
+		} while ( j1 < 1 || j1 > 3 );
 		System.out.println("Entrez le type du deuième IA :");
 		int j2;
 		do {
-			System.out.println("(IA facile => 1 IA moyen => 2 IA fort => 3 Skynet => 4)");
+			System.out.println("(IA facile => 1 IA MinMax => 2 IA Alphabeta => 3)");
 			j2 = input.nextInt();
-		} while ( j2 < 1 || j2 > 4 );
+		} while ( j2 < 1 || j2 > 3 );
 		switch(j1){
 			case 1: joueur1 = TypeJoueur.IA_FACILE;
 			break;
 			case 2: joueur1 = TypeJoueur.IA_MOYEN;
-			break;
-			case 3: joueur1 = TypeJoueur.IA_DIFFICILE;
 			break;
 			default: joueur1 = TypeJoueur.IA_EXTREME;
 		}
@@ -127,13 +155,65 @@ public class MoteurTest{
 			break;
 			case 2: joueur2 = TypeJoueur.IA_MOYEN;
 			break;
-			case 3: joueur2 = TypeJoueur.IA_DIFFICILE;
-			break;
 			default: joueur2 = TypeJoueur.IA_EXTREME;
-		}		
+		}
+		String c;
+		if (j1 == 2 || j1 == 3){
+			System.out.println("Choix des heuristiques pour le joueur 1: ");
+			System.out.println("Heuristique1 (Y/N):");
+			do {
+				c = input.nextLine();
+			} while (!c.contentEquals("Y") && !c.contentEquals("N"));
+			if (c.contentEquals("Y"))
+				h1j1 = true;
+			else
+				h1j1 = false;
+			System.out.println("Heuristique2: ");
+			do {
+				c = input.nextLine();
+			} while (!c.contentEquals("Y") && !c.contentEquals("N"));
+			if (c.contentEquals("Y"))
+				h2j1 = true;
+			else
+				h2j1 = false;
+			System.out.println("Heuristique3: ");
+			do {
+				c = input.nextLine();
+			} while (!c.contentEquals("Y") && !c.contentEquals("N"));
+			if (c.contentEquals("Y"))
+				h3j1 = true;
+			else
+				h3j1 = false;
+		}
+		if (j2 == 2 || j2 == 3){
+			System.out.println("Choix des heuristiques pour le joueur 2: ");
+			System.out.println("Heuristique1 (Y/N):");
+			do {
+				c = input.nextLine();
+			} while (!c.contentEquals("Y") && !c.contentEquals("N"));
+			if (c.contentEquals("Y"))
+				h1j2 = true;
+			else
+				h1j2 = false;
+			System.out.println("Heuristique2: ");
+			do {
+				c = input.nextLine();
+			} while (!c.contentEquals("Y") && !c.contentEquals("N"));
+			if (c.contentEquals("Y"))
+				h2j2 = true;
+			else
+				h2j2 = false;
+			System.out.println("Heuristique3: ");
+			do {
+				c = input.nextLine();
+			} while (!c.contentEquals("Y") && !c.contentEquals("N"));
+			if (c.contentEquals("Y"))
+				h3j2 = true;
+			else
+				h3j2 = false;	
+		}
 		this.iaFacile = new Hasard();
 		this.iaMinMax = new MinMax();
-		//this.iaBestFirst = new BestFirst();
 		this.iaAlphaBeta = new AlphaBeta();
 		this.tempsTotalJoueur1 = 0F;
 		this.tempsTotalJoueur2 = 0F;
@@ -150,18 +230,19 @@ public class MoteurTest{
 	 * Si c'estle tour de l'ordi on fait jouer l'ordi
 	 */
 	public void lancerLesTests(){
+		this.jeu = new Jeu(joueur1,joueur2);
 		for(int i = 0; i < nbTest ; i++){
 			this.tempsJoueur1 = 0F;
 			this.tempsJoueur2 = 0F;
-			this.jeu = new Jeu(joueur1,joueur2);
+			this.jeu.nouvellePartie(joueur1, joueur2, h1j1, h2j1, h3j1, h1j2, h2j2, h3j2);
 			System.out.println("==============================");
 			System.out.println("Lancement du test numero "+ (i+1));
 			lancerPartie();
 			switch (this.jeu.getPlateau().victoire()){
-				case 1: System.out.println("Victoire du joueur 1");
+				case 1: //System.out.println("Victoire du joueur 1");
 						this.nbVictoireJoueur1++;
 						break;
-				case 2: System.out.println("Victoire du joueur 2");
+				case 2: //System.out.println("Victoire du joueur 2");
 						this.nbVictoireJoueur2++;
 						break;
 				default: System.out.println("Partie null");
@@ -178,7 +259,7 @@ public class MoteurTest{
 		System.out.println("Temps total joueur 2: "+this.tempsTotalJoueur2+" sur "+this.nbTotalCoupJoueur2+" coups");
 		System.out.println("Moyenne des coups du joueur2: " + this.tempsTotalJoueur2/this.nbTotalCoupJoueur2);
 		System.out.println("Nombre de victoire du Joueur 1: "+this.nbVictoireJoueur1);
-		System.out.println("Nombre de victoire du Joueur 1: "+this.nbVictoireJoueur2);
+		System.out.println("Nombre de victoire du Joueur 2: "+this.nbVictoireJoueur2);
 		System.out.println("Nombre de parties null: "+this.nbPartieNull);
 	}
 	

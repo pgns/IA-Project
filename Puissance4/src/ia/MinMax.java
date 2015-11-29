@@ -10,7 +10,7 @@ import utils.Coordonnees;
 public class MinMax {
 	
 	ListeCoupPossible listeCoupPossible;
-	int profondeurArbre = 4;
+	int profondeurArbre;
 	
 	
 	public MinMax(){
@@ -23,7 +23,7 @@ public class MinMax {
 	 * @return le plateau qui a la meilleur proba de gagner
 	 */
 	public Plateau minMax(byte joueur, Plateau plateau){
-		
+		this.profondeurArbre = 4;
 		this.listeCoupPossible = new ListeCoupPossible(plateau,joueur);
 		
 		int valeur_max = Integer.MIN_VALUE;

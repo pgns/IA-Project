@@ -5,13 +5,14 @@ import puissance4.Plateau;
 public class AlphaBeta {
 	ListeCoupPossible listeCoupPossible;
 	
-	int profondeurArbre =7;
+	int profondeurArbre;
 	public AlphaBeta(){
 		
 	}
 	
 	public Plateau alphaBeta(byte joueur, Plateau plateau){
 		//System.out.println("Debut de l'algo ALPHA-BETA");
+		this.profondeurArbre = 7;
 		this.listeCoupPossible = new ListeCoupPossible(plateau,joueur);
 		int indice_max=0;
 		int valeur;
