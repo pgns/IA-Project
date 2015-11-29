@@ -21,6 +21,11 @@ public enum TypeJoueur {
 		return this;
 	}
 	
+	/**
+	 * renvoie vrai si le joueur n'est pas huamin
+	 * @param tj Type joueur
+	 * @return vrai si le joueur n'est pas huamin
+	 */
 	public static boolean estOrdi(TypeJoueur tj){
 		return tj == TypeJoueur.IA_FACILE || tj == TypeJoueur.IA_MOYEN || tj == TypeJoueur.IA_DIFFICILE || tj == TypeJoueur.IA_EXTREME;
 	}

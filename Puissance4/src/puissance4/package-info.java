@@ -1,8 +1,5 @@
+
 /**
- * 
- */
-/**
- * @author pierre
- *
+ * Package du jeu
  */
 package puissance4;

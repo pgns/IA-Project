@@ -3,20 +3,44 @@ package puissance4;
 import utils.Constantes;
 import utils.Coordonnees;
 
+/**
+ * représente la grille du puissance4
+ * 			0 pour une position vide
+ *			1 pour un pion du joueur 1
+ *			2 pour un pion du joueur 2
+ */
 public class Plateau implements Cloneable {
-	//-- tableau :  represente la grille puissance4 
+	/**
+	 * tableau :  represente la grille puissance4 
+	 *   	0 pour une position vide
+	 *		1 pour un pion du joueur 1
+	 *		2 pour un pion du joueur 2 
+	 */
 	byte tableau [][];
-	//-- 			0 pour une position vide
-	//--			1 pour un pion du joueur 1
-	//--			2 pour un pion du joueur 2
-
 	
-	// les coordonnées des case victoires
+	/**
+	 * Cordonnées 1 Victoire
+	 */
 	public Coordonnees cord1Victoire;
+	
+	/**
+	 * Cordonnées 2 Victoire
+	 */
 	public Coordonnees cord2Victoire;
+	
+	/**
+	 * Cordonnées 3 Victoire
+	 */
 	public Coordonnees cord3Victoire;
+	
+	/**
+	 * Cordonnées 4 Victoire
+	 */
 	public Coordonnees cord4Victoire;
 	
+	/**
+	 * Le constructeur du plateau
+	 */
 	public Plateau(){
 		tableau = new byte[6][7];
 		cord1Victoire = new Coordonnees (-1,-1);
@@ -25,7 +49,9 @@ public class Plateau implements Cloneable {
 		cord4Victoire = new Coordonnees (-1,-1);
 	}
 	
-	//-- initialise le tableau de 0 --//
+	/**
+	 * Initialise le tableu avec des 0
+	 */
 	public void initialisePlateau(){
 		for(int i=0;i<6;i++){
 			for(int j=0;j<7;j++){
@@ -38,7 +64,11 @@ public class Plateau implements Cloneable {
 		cord4Victoire = new Coordonnees (-1,-1);
 	}
 
-	//-- Ajoute un pion pour un joueur donné dans la colonne col
+	/**
+	 * Ajoute un pion pour un joueur donné dans la colonne col
+	 * @param joueur j
+	 * @param col colonne 
+	 */
 	public void ajoutePion(byte joueur, int col){
 		int i=0;
 		while((i<Constantes.NOMBRE_LIGNE_JEUX) && (tableau[i][col]==0)){
@@ -61,10 +91,11 @@ public class Plateau implements Cloneable {
 	public boolean ajoutColonnePossible(int col){
 		return tableau[0][col] == 0;
 	}
-	
-	
-	//-- Parcout le tableau horizontla/vertical pour savoir si un joueur J a gagné --//
-	//-- retourne le joueur gagnant, ou 0 sinon --//
+
+	/**
+	 * Parcout le tableau horizontla/vertical pour savoir si un joueur J a gagné 
+	 * @return le joueur gagnant, ou 0 sinon
+	 */
 	public byte VictoireHV(){
 		int a = 0;
 		byte joueur;
@@ -105,20 +136,40 @@ public class Plateau implements Cloneable {
 	}
 	
 	
+	/**
+	 * Renvoie vrai si la case est vide
+	 * @param i ligne
+	 * @param j colonne
+	 * @return vrai si la case est vide
+	 */
 	public boolean estCaseVide(int i,int j){
 		return this.tableau[i][j] == 0;
 	}
 	
+	/**
+	 * Renvoie vrai si le joueur 1 a une pion dans la case
+	 * @param i ligne
+	 * @param j colonne
+	 * @return vrai si le joueur 1 a une pion dans la case
+	 */
 	public boolean estCaseJoueur1(int i,int j){
 		return this.tableau[i][j] == 1;
 	}
 	
+	/**
+	 * Renvoie le contenu du tableau
+	 * @param i ligne
+	 * @param j colonne
+	 * @return le contenu de la case
+	 */
 	public byte getContenu(int i, int j) {
 		return this.tableau[i][j];
 	}
 	
-	//-- Parcout le tableau en diagonale pour savoir si un joueur J a gagné --//
-	//-- retourne le joueur gagnant, ou 0 sinon --//
+	/**
+	 * Parcout le tableau en diagonale pour savoir si un joueur J a gagné
+	 * @return le joueur gagnant, ou 0 sinon
+	 */
 		public byte VictoireDiagonale(){
 			int i, j, k;
 			int a;
@@ -197,7 +248,9 @@ public class Plateau implements Cloneable {
 		}
 	
 		
-	//-- affiche le plateau pour debug --//
+	/**
+	 * affiche le plateau utile pour le debug
+	 */
 	public void AffichePlateau(){
 		for(int i=0;i<6;i++){
 			for(int j=0;j<7;j++){
@@ -406,7 +459,10 @@ public class Plateau implements Cloneable {
 				this.tableau[i][j] = p.getContenu(i, j);
 	}
 	
-	
+	/**
+	 * Renvoie vrai si le plateau est plein
+	 * @return vrai si le plateau est plein
+	 */
 	public boolean plateauPlein(){
 		for(int i =0 ; i < Constantes.NOMBRE_COLONNE_JEUX; i++){
 			if(this.tableau[0][i]==0){
@@ -416,13 +472,13 @@ public class Plateau implements Cloneable {
 		return true;
 	}
 	
-	
-	
-	
-	// === Evalue une partie === //
-	// note le jeu de J1 et J2
-	// retourne J1-J2
-	// l'algo MinMax s'occupe de gerer la note( de l'inverser( J2 - J1)) si j2 été en train de jouer son coup
+	/**
+	 * note le jeu de J1 et J2
+	 * retourne J1-J2
+	 * l'algo MinMax s'occupe de gerer la note( de l'inverser( J2 - J1)) si j2 été en train de jouer son coup
+	 * @param joueur joueur
+	 * @return l'évaluation du plateau
+	 */
 	public int eval(byte joueur){
 		int[] score = new int[3];
 		score[0]=0;

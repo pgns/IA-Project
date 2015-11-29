@@ -6,6 +6,9 @@ import javax.swing.JPanel;
 import puissance4.Jeu;
 
 @SuppressWarnings("serial")
+/**
+ * Le panel de jeu
+ */
 public class PanelJeu extends JPanel{
 	
 	/**

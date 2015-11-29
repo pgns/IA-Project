@@ -9,6 +9,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 @SuppressWarnings("serial")
+/**
+ * Le panel de commande
+ */
 public class PanelCommande extends JPanel{
 
 	public Button bnouvellePartie;

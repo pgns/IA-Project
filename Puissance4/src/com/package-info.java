@@ -1,8 +1,4 @@
 /**
- * 
- */
-/**
- * @author Barna
- *
+ *  package pour le main
  */
 package com;

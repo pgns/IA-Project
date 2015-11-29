@@ -4,7 +4,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import puissance4.TypeJoueur;
 
-
+/**
+ * L'écouteur du bouton
+ */
 public class EcouteurBouton implements ActionListener{
 
 	/**

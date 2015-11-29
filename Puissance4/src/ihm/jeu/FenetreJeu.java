@@ -7,6 +7,9 @@ import puissance4.Jeu;
 import puissance4.MoteurJeu;
 
 @SuppressWarnings("serial")
+/**
+ * La fenetre du jeu
+ */
 public class FenetreJeu extends JFrame{
 
 	public PanelJeu pJeu;

@@ -7,9 +7,7 @@ import ihm.jeu.FenetreJeu;
 import ia.AlphaBeta;
 
 /**
- * 
- * @author Barna
- *
+ * Classe du moteur du jeu
  */
 public class MoteurJeu {
 
@@ -33,16 +31,34 @@ public class MoteurJeu {
 	 */
 	private boolean verrouFinPartie;
 
+	/**
+	 * IA minmax
+	 */
 	private MinMax iaMinMax;
 	
+	/**
+	 * IA hasard
+	 */
 	private Hasard iaFacile;
 	
+	/**
+	 * IA alphabeta
+	 */
 	private AlphaBeta iaAlphaBeta;
 	
+	/**
+	 * IA best-first
+	 */
 	private BestFirst iaBestFirst;
 	
+	/**
+	 * Temps Joueur1
+	 */
 	public float tempsJoueur1;
 	
+	/**
+	 * Temps Joueur2
+	 */
 	public float tempsJoueur2;
 	
 	/**
@@ -50,7 +66,6 @@ public class MoteurJeu {
 	 * @param j le jeu
 	 * @param fj La fenetre de jeu
 	 */
-
 	public MoteurJeu(Jeu j, FenetreJeu fj){
 		this.fenetreJeu = fj;
 		this.jeu = j;
@@ -66,7 +81,6 @@ public class MoteurJeu {
 	
 	/**
 	 * Si c'estle tour de l'ordi on fait jouer l'ordi
-	 * C'est beugï¿½ pour l'instant:)
 	 */
 	public void jouer(){
 		if (this.jeu.tourJoueur() == 1 && TypeJoueur.estOrdi(this.jeu.typeJoueur1())){
@@ -152,8 +166,8 @@ public class MoteurJeu {
 	}
 
 	/**
-	 * Le setteur du vï¿½rrou
-	 * @param verrou 
+	 * Le setteur du vérrou
+	 * @param verrou valeur du vérou
 	 */
 	public void setVerrou(boolean verrou) {
 		this.verrou = verrou;

@@ -69,7 +69,7 @@ public class AirePlateau extends JComponent{
 	
 	/**
 	 * Dessine la grille
-	 * @param g2d 
+	 * @param g2d  Graphics2D
 	 */
 	synchronized public void dessinerGrille(Graphics2D g2d){
 		int i, j;
@@ -105,7 +105,7 @@ public class AirePlateau extends JComponent{
 	
 	/**
 	 * colorie les cases victoires
-	 * @param g2d
+	 * @param g2d Graphics2D
 	 */
 	synchronized public void dessinerVictoire(Graphics g2d){
 		if (jeu.getPlateau().cordVictoire()){
@@ -119,8 +119,8 @@ public class AirePlateau extends JComponent{
 	
 	/**
 	 * Renvoie les cordonnées de la case cliqué
-	 * @param clickX 
-	 * @param clickY
+	 * @param clickX cordonnées x
+	 * @param clickY cordonnées y
 	 * @return les cordonnées de la case cliqué
 	 */
 	public Coordonnees coordonneesClic(int clickX, int clickY){

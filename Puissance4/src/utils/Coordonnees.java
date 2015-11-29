@@ -15,8 +15,8 @@ public class Coordonnees {
 	
 	/**
 	 * Le constructeur 
-	 * @param colonne
-	 * @param ligne
+	 * @param colonne colonne
+	 * @param ligne ligne
 	 */
 	public Coordonnees(int colonne, int ligne){
 		this.setLigne(ligne);
@@ -33,7 +33,7 @@ public class Coordonnees {
 
 	/**
 	 * Le seteur de la ligne
-	 * @param ligne
+	 * @param ligne ligne
 	 */
 	public void setLigne(int ligne) {
 		this.ligne = ligne;
@@ -49,7 +49,7 @@ public class Coordonnees {
 
 	/**
 	 * Le setteur de la colonne
-	 * @param colonne
+	 * @param colonne colonne
 	 */
 	public void setColonne(int colonne) {
 		this.colonne = colonne;

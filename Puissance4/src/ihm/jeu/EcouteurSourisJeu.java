@@ -9,6 +9,9 @@ import puissance4.MoteurJeu;
 import utils.Constantes;
 import utils.Coordonnees;
 
+/**
+ * L'écouteur de la souris
+ */
 public class EcouteurSourisJeu implements MouseListener, MouseMotionListener{
 
 	/**
@@ -26,6 +29,7 @@ public class EcouteurSourisJeu implements MouseListener, MouseMotionListener{
 
 	/**
 	 * Initialise l'écouteur
+	 * @param fj la fenetre de jeu
 	 * @param airePlateau le Plateau de jeu
 	 * @param moteurJeu le moteur du jeu
 	 */

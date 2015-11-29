@@ -1,12 +1,12 @@
 package com;
 
-import java.util.Scanner;
-
 import ihm.jeu.FenetreJeu;
 import puissance4.Jeu;
 import puissance4.MoteurTest;
-import puissance4.TypeJoueur;
 
+/**
+ * Le main
+ */
 public class Test {
 
 	static Jeu j;
@@ -15,8 +15,8 @@ public class Test {
 		j = new Jeu();
 		FenetreJeu f = new FenetreJeu(j);
 
-		//Pour tester les IA entre eux un certain nombre de fois en mode console, à décomenter pour utiliser
-		//MoteurTest mt = new MoteurTest();
+		//Pour tester les IA entre eux un certain nombre de fois en mode console
+		MoteurTest mt = new MoteurTest();
 		
 	}
 	

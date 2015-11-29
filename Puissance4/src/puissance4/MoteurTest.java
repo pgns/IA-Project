@@ -9,9 +9,7 @@ import java.util.Scanner;
 import ia.AlphaBeta;
 
 /**
- * 
- * @author Barna
- *
+ * Classe permetant d'efectuer un nombre de test donné pour les IA
  */
 public class MoteurTest{
 
@@ -20,16 +18,34 @@ public class MoteurTest{
 	 */
 	private Jeu jeu;
 
+	/**
+	 * IA minmax
+	 */
 	private MinMax iaMinMax;
 	
+	/**
+	 * IA hasard
+	 */
 	private Hasard iaFacile;
 	
+	/**
+	 * IA alphabeta
+	 */
 	private AlphaBeta iaAlphaBeta;
 	
+	/**
+	 * IA best-first
+	 */
 	private BestFirst iaBestFirst;
 	
+	/**
+	 * Le temps total du joueur1
+	 */
 	public float tempsTotalJoueur1;
 	
+	/**
+	 * Le temps total du joueur 2
+	 */
 	public float tempsTotalJoueur2;
 	
 	/**
@@ -51,22 +67,37 @@ public class MoteurTest{
 	 * Nombre total de coup du joueur2
 	 */
 	private int nbTotalCoupJoueur2;
+	
 	/**
 	 * Le type du joueur1
 	 */
 	private TypeJoueur joueur1;
+	
 	/**
 	 * Le type du joueur2
 	 */
 	private TypeJoueur joueur2;
+	
 	/**
 	 * Le nombre de fois qu'on test nos ia entre eux
 	 */
 	private int nbTest;
 	
+	/**
+	 * Le nombre de victoires du joueur 1
+	 */
 	private int nbVictoireJoueur1;
+	
+	/**
+	 * Le nombre de Victoires du joueur 2
+	 */
 	private int nbVictoireJoueur2;
+	
+	/**
+	 * Le nombre de parties null
+	 */
 	private int nbPartieNull;
+	
 	/**
 	 * Initialise le moteur de test
 	 */
@@ -123,7 +154,6 @@ public class MoteurTest{
 	
 	/**
 	 * Si c'estle tour de l'ordi on fait jouer l'ordi
-	 * C'est beugï¿½ pour l'instant:)
 	 */
 	public void lancerLesTests(){
 		for(int i = 0; i < nbTest ; i++){
@@ -158,6 +188,9 @@ public class MoteurTest{
 		System.out.println("Nombre de parties null: "+this.nbPartieNull);
 	}
 	
+	/**
+	 * Lance la partie
+	 */
 	public void lancerPartie(){
 		long start;
 		float temps;
@@ -209,5 +242,4 @@ public class MoteurTest{
 		}
 		// on sort du while: la partie est finie, il y a une victoire ou le plateau est plein
 	}
-	
 }
