@@ -66,9 +66,9 @@ public class MinMax {
 			else{	
 				if (profondeur == 0)//<== profondeur
 					if(joueur == player)
-						return p.eval(player);
+						return p.evalHeuristique(player);
 					else
-						return -p.eval(player);
+						return -p.evalHeuristique(player);
 				if (joueur == 1)
 					joueurNext = 2;
 				else
