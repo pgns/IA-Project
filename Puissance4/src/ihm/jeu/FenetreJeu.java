@@ -45,7 +45,7 @@ public class FenetreJeu extends JFrame{
 		//Un clic sur le bouton de fermeture clos l'application
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//On fixe la taille de la fenêtre
-		this.setSize(900, 820);
+		this.setSize(1000, 820);
 		//On centre la fenêtre
 		this.setLocationRelativeTo(null);
 		//On la rend visible
