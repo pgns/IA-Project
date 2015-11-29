@@ -58,6 +58,12 @@ public class Plateau implements Cloneable {
 	boolean heuristique2J2;
 	boolean heuristique3J2;
 	
+	public void afficheHeuristique(){
+		System.out.println(heuristique1J1);
+		System.out.println(heuristique2J1);
+		System.out.println(heuristique3J1);
+	}
+	
 	/**
 	 * Initialise le tableu avec des 0
 	 */
@@ -479,6 +485,16 @@ public class Plateau implements Cloneable {
 			for(j = 0; j < Constantes.NOMBRE_COLONNE_JEUX; j++)
 				this.tableau[i][j] = p.getContenu(i, j);
 	}
+	
+	public void copieHeuristique(Plateau p){
+		this.heuristique1J1 = p.heuristique1J1;
+		this.heuristique2J1 = p.heuristique2J1;
+		this.heuristique3J1 = p.heuristique3J1;
+		this.heuristique1J2 = p.heuristique1J2;
+		this.heuristique2J2 = p.heuristique2J2;
+		this.heuristique3J2 = p.heuristique3J2;
+	}
+	
 	
 	/**
 	 * Renvoie vrai si le plateau est plein

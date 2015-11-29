@@ -17,6 +17,7 @@ public class ListeCoupPossible extends ArrayList<Plateau>{
 		for (int i=0; i < Constantes.NOMBRE_COLONNE_JEUX ; i++){
 			if (p.ajoutColonnePossible(i)){
 				Plateau pbis = new Plateau();
+				pbis.copieHeuristique(p);
 				pbis.copieTableau(p);
 				pbis.ajoutePion(joueur, i);
 				this.add(pbis);
