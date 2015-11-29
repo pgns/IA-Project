@@ -48,8 +48,6 @@ public class FenetreJeu extends JFrame{
 	//	this.setResizable(false);
 		//On centre la fenêtre
 		this.setLocationRelativeTo(null);
-		//On défini l'icone
-		//		this.setIconImage(Avalam.ci.icone);
 		//On la rend visible
 		this.setVisible(true);
 	}
