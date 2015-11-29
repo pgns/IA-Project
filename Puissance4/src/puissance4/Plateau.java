@@ -525,6 +525,7 @@ public class Plateau implements Cloneable {
 		byte pions;
 		int note;
 		
+		System.out.println("ding");
 		
 		//== parcourt en hauteur ==//
 		for(int i=0;i<7;i++){
@@ -726,6 +727,8 @@ public class Plateau implements Cloneable {
 					if(heuristique1 || heuristique2)
 						if(a>1)
 							note +=10;
+						if(a>1)
+							note +=10;
 					if(heuristique2)
 						if(a>2)
 							note+=25;
@@ -755,7 +758,7 @@ public class Plateau implements Cloneable {
 					a++;
 					if(heuristique1 || heuristique2)
 						if(a>1)
-							note += 10;
+							note +=10;
 					if(heuristique2)
 						if(a>2)
 							note+=25;
@@ -791,7 +794,7 @@ public class Plateau implements Cloneable {
 					a++;
 					if(heuristique1 || heuristique2)
 						if(a>1)
-							note += 10;
+							note+=10;
 					if(heuristique2)
 					if(a>2)
 						note+=25;
@@ -817,7 +820,7 @@ public class Plateau implements Cloneable {
 					a++;
 					if(heuristique1 || heuristique2)
 						if(a>1)
-							note += 10;
+							note+=10;
 					if(heuristique2)
 					if(a>2)
 						note+=25;
@@ -844,7 +847,7 @@ public class Plateau implements Cloneable {
 					a++;
 					if(heuristique1 || heuristique2)
 						if(a>1)
-							note += 10;
+							note+=10;
 					if(heuristique2)
 						if(a>2)
 							note+=25;
@@ -869,7 +872,7 @@ public class Plateau implements Cloneable {
 					a++;
 					if(heuristique1 || heuristique2)
 						if(a>1)
-							note += 10;
+							note+=10;
 					if(heuristique2)
 						if(a>2)
 							note+=25;
