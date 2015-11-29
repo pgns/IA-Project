@@ -29,6 +29,15 @@ public class EcouteurBouton implements ActionListener{
 		if(ae.getSource() == fenetreJeu.pCommande.bnouvellePartie){
 			TypeJoueur tJ1;
 			TypeJoueur tJ2;
+			
+			boolean heuristique1J1;
+			boolean heuristique2J1;
+			boolean heuristique3J1;
+			
+			boolean heuristique1J2;
+			boolean heuristique2J2;
+			boolean heuristique3J2;
+			
 			if (fenetreJeu.pCommande.choixJoueur1.getSelectedIndex() == 0)
 				tJ1 = TypeJoueur.HUMAIN;
 			else if (fenetreJeu.pCommande.choixJoueur1.getSelectedIndex() == 1)
@@ -49,6 +58,32 @@ public class EcouteurBouton implements ActionListener{
 				tJ2 = TypeJoueur.IA_DIFFICILE;
 			else
 				tJ2 = TypeJoueur.IA_EXTREME;
+			
+			if (fenetreJeu.pCommande.heuristique1J1.getSelectedIndex() == 0)
+				heuristique1J1 = true;
+			else
+				heuristique1J1 = false;
+			if (fenetreJeu.pCommande.heuristique2J1.getSelectedIndex() == 0)
+				heuristique2J1 = true;
+			else
+				heuristique2J1 = false;
+			if (fenetreJeu.pCommande.heuristique3J1.getSelectedIndex() == 0)
+				heuristique3J1 = true;
+			else
+				heuristique3J1 = false;
+			if (fenetreJeu.pCommande.heuristique1J2.getSelectedIndex() == 0)
+				heuristique1J2 = true;
+			else
+				heuristique1J2 = false;
+			if (fenetreJeu.pCommande.heuristique2J2.getSelectedIndex() == 0)
+				heuristique2J2 = true;
+			else
+				heuristique2J2 = false;
+			if (fenetreJeu.pCommande.heuristique3J2.getSelectedIndex() == 0)
+				heuristique3J2 = true;
+			else
+				heuristique3J2 = false;
+			
 			this.fenetreJeu.moteurJeu.getJeu().nouvellePartie(tJ1,tJ2);
 			this.fenetreJeu.aTemps.setText("Joueur Temps(secondes)\n");
 			this.fenetreJeu.moteurJeu.setVerrouFinPartie(false);
