@@ -1,8 +1,4 @@
 /**
- * 
- */
-/**
- * @author Barna
- *
+ * Package pour les outils
  */
 package utils;

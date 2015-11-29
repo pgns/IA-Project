@@ -8,7 +8,9 @@ public class Constantes {
 	 * Le chargeur de ressources
 	 */
 	public static Ressources RESSOURCES = new Ressources();
-	
+	/**
+	 * 
+	 */
 	public static int NOMBRE_COLONNE_JEUX = 7;
 	public static int NOMBRE_LIGNE_JEUX = 6;
 	public static int NOMBRE_CASE_VICTOIRE = 4;
