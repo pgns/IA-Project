@@ -442,9 +442,13 @@ public class Plateau implements Cloneable {
 				if(tableau[j][i] == pions){
 					a++;
 					if(a>1)
-						note += 20;
+						note +=10;
 					if(a>2)
-						note+=10;
+						note+=25;
+					if(a==2)
+						if(j>1)
+							if(tableau[j-2][i] == 0 && tableau[j-1][i] == 0)
+								note+=30;
 				}
 				else{
 					a=1;
@@ -465,9 +469,15 @@ public class Plateau implements Cloneable {
 				if(tableau[i][j] == pions){
 					a++;
 					if(a>1)
-						note += 20;
+						note += 10;
 					if(a>2)
-						note+=10;
+						note+=25;
+					if(a==2)
+						if(j>1 && j<5)
+							if(tableau[i][j+1] == 0 && tableau[i][j+2] == 0)
+								note+=30;
+							else if(tableau[i][j-1]==0 && tableau[i][j-2]==0)
+								note+=30;
 				}
 				else{
 					a=1;
@@ -492,9 +502,9 @@ public class Plateau implements Cloneable {
 				if(tableau[k][j] == pions){
 					a++;
 					if(a>1)
-						note += 20;
+						note += 10;
 					if(a>2)
-						note+=10;
+						note+=25;
 				}else{
 					a = 1;
 					score[pions]+=note;
@@ -516,9 +526,9 @@ public class Plateau implements Cloneable {
 				if(tableau[j][k] == pions){
 					a++;
 					if(a>1)
-						note += 20;
+						note += 10;
 					if(a>2)
-						note+=10;
+						note+=25;
 				}else{
 					a = 1;
 					score[pions]+=note;
@@ -541,9 +551,9 @@ public class Plateau implements Cloneable {
 				if(tableau[j][k] == pions){
 					a++;
 					if(a>1)
-						note += 20;
+						note += 10;
 					if(a>2)
-						note+=10;
+						note+=25;
 				}else{
 					a = 1;
 					score[pions]+=note;
@@ -564,9 +574,9 @@ public class Plateau implements Cloneable {
 				if(tableau[k][j] == pions){
 					a++;
 					if(a>1)
-						note += 20;
+						note += 10;
 					if(a>2)
-						note+=10;
+						note+=25;
 				}else{
 					a = 1;
 					score[pions]+=note;
