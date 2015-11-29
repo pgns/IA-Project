@@ -4,7 +4,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
-import ia.MinMax;
 import puissance4.MoteurJeu;
 import utils.Constantes;
 import utils.Coordonnees;

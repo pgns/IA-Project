@@ -124,6 +124,7 @@ public class MoteurTestProfondeur {
 		this.iaFacile = new Hasard();
 		this.iaMinMax = new MinMax();
 		this.iaAlphaBeta = new AlphaBeta();
+		input.close();
 		//on lance les tests
 		lancerLesTests();
 	}

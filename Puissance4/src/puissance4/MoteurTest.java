@@ -239,6 +239,7 @@ public class MoteurTest{
 		this.nbVictoireJoueur1 = 0;
 		this.nbVictoireJoueur2 = 0;
 		this.nbPartieNull = 0;
+		input.close();
 		//on lance les tests
 		lancerLesTests();
 	}

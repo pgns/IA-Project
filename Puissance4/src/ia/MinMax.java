@@ -1,9 +1,8 @@
 package ia;
-import java.lang.reflect.Array;
+
 import java.util.ArrayList;
 
 import puissance4.Plateau;
-import utils.Coordonnees;
 
 // == tout les commentaires ont été déplacé dans MinMax.save
 

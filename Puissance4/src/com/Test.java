@@ -14,6 +14,7 @@ public class Test {
 
 	static Jeu j;
 	
+	@SuppressWarnings("unused")
 	public static void main(String[] args) {
 		j = new Jeu();
 		FenetreJeu f = new FenetreJeu(j);
@@ -36,6 +37,7 @@ public class Test {
 			if (str.contentEquals("q"))
 				tourner = false;
 		}
+		input1.close();
 	}
 	
 }
