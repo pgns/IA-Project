@@ -115,7 +115,7 @@ public class MoteurJeu {
 			if (this.jeu.typeJoueur2() == TypeJoueur.IA_MOYEN){
 				jeu.plateau = iaMinMax.minMax(jeu.tourJoueur(), jeu.getPlateau());
 			}
-			if (this.jeu.typeJoueur1() == TypeJoueur.IA_EXTREME){
+			if (this.jeu.typeJoueur2() == TypeJoueur.IA_EXTREME){
 				jeu.plateau = iaAlphaBeta.alphaBeta(jeu.tourJoueur(), jeu.getPlateau());
 			}
 			jeu.changerLaMain();

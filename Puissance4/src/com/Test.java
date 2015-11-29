@@ -20,18 +20,21 @@ public class Test {
 		
 		Scanner input1 = new Scanner(System.in);
 		String str;
+		boolean tourner = true;
 		//Pour tester les IA entre eux un certain nombre de fois en mode console
-		while(true){
+		while(tourner){
 			do{
-				System.out.println("Entrez p pour lancer les tests sur la profondeur\nEntrez t pour lancer lest test entre les IA");
+				System.out.println("Entrez p pour lancer les tests sur la profondeur\nEntrez t pour lancer lest test entre les IA\nEntrez q pour quiter");
 				str=input1.nextLine();
-			} while ( ! str.contentEquals("p") && ! str.contentEquals("t"));
+			} while ( ! str.contentEquals("p") && ! str.contentEquals("t") && !str.contentEquals("q"));
 			if (str.contentEquals("p")){
 				MoteurTestProfondeur mtp = new MoteurTestProfondeur();
 			}
 			if (str.contentEquals("t")){
 				MoteurTest mt = new MoteurTest();
 			}
+			if (str.contentEquals("q"))
+				tourner = false;
 		}
 	}
 	

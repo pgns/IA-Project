@@ -113,6 +113,15 @@ public class MoteurTest{
 	private int nbVictoireJoueur1;
 	
 	/**
+	 * Profondeur du joueur 1
+	 */
+	private int profondeur1;
+	
+	/**
+	 * Profondeur du joueur 2
+	 */
+	private int profondeur2;
+	/**
 	 * Le nombre de Victoires du joueur 2
 	 */
 	private int nbVictoireJoueur2;
@@ -184,6 +193,10 @@ public class MoteurTest{
 				h3j1 = true;
 			else
 				h3j1 = false;
+			System.out.println("Entrez la profondeur du joueur1: ");
+			do {
+				profondeur1 = input.nextInt();
+			} while (profondeur1 < 0 || profondeur1 > 1000000);
 		}
 		if (j2 == 2 || j2 == 3){
 			System.out.println("Choix des heuristiques pour le joueur 2: ");
@@ -210,7 +223,11 @@ public class MoteurTest{
 			if (c.contentEquals("Y"))
 				h3j2 = true;
 			else
-				h3j2 = false;	
+				h3j2 = false;
+			System.out.println("Entrez la profondeur du joueur2: ");
+			do {
+				profondeur2 = input.nextInt();
+			} while (profondeur2 < 0 || profondeur2 > 1000000);
 		}
 		this.iaFacile = new Hasard();
 		this.iaMinMax = new MinMax();
@@ -281,10 +298,10 @@ public class MoteurTest{
 					jeu.plateau = iaFacile.hasrad(jeu.tourJoueur(), jeu.getPlateau());
 				}
 				if (this.jeu.typeJoueur1() == TypeJoueur.IA_MOYEN){
-					jeu.plateau = iaMinMax.minMax(jeu.tourJoueur(), jeu.getPlateau());
+					jeu.plateau = iaMinMax.minMax(jeu.tourJoueur(), jeu.getPlateau(),profondeur1);
 				}
 				if (this.jeu.typeJoueur1() == TypeJoueur.IA_EXTREME){
-					jeu.plateau = iaAlphaBeta.alphaBeta(jeu.tourJoueur(), jeu.getPlateau());
+					jeu.plateau = iaAlphaBeta.alphaBeta(jeu.tourJoueur(), jeu.getPlateau(),profondeur1);
 				}
 				temps = (System.currentTimeMillis() - start) / 1000F;
 				this.tempsJoueur1 += temps;
@@ -298,10 +315,10 @@ public class MoteurTest{
 					jeu.plateau = iaFacile.hasrad(jeu.tourJoueur(), jeu.getPlateau());
 				}
 				if (this.jeu.typeJoueur2() == TypeJoueur.IA_MOYEN){
-					jeu.plateau = iaMinMax.minMax(jeu.tourJoueur(), jeu.getPlateau());
+					jeu.plateau = iaMinMax.minMax(jeu.tourJoueur(), jeu.getPlateau(),profondeur2);
 				}
 				if (this.jeu.typeJoueur2() == TypeJoueur.IA_EXTREME){
-					jeu.plateau = iaAlphaBeta.alphaBeta(jeu.tourJoueur(), jeu.getPlateau());
+					jeu.plateau = iaAlphaBeta.alphaBeta(jeu.tourJoueur(), jeu.getPlateau(),profondeur2);
 				}
 				temps = (System.currentTimeMillis() - start) / 1000F;
 				this.tempsJoueur2 += temps;
