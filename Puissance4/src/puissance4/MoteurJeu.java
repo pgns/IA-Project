@@ -1,7 +1,6 @@
 package puissance4;
 
 import ia.MinMax;
-import ia.BestFirst;
 import ia.Hasard;
 import ihm.jeu.FenetreJeu;
 import ia.AlphaBeta;
@@ -39,8 +38,6 @@ public class MoteurJeu {
 	
 	private AlphaBeta iaAlphaBeta;
 	
-	private BestFirst iaBestFirst;
-	
 	public float tempsJoueur1;
 	
 	public float tempsJoueur2;
@@ -58,7 +55,6 @@ public class MoteurJeu {
 		this.setVerrouFinPartie(false);
 		this.iaFacile = new Hasard();
 		this.iaMinMax = new MinMax();
-		this.iaBestFirst = new BestFirst();
 		this.iaAlphaBeta = new AlphaBeta();
 		this.tempsJoueur1 = 0F;
 		this.tempsJoueur2 = 0F;
@@ -79,9 +75,6 @@ public class MoteurJeu {
 			}
 			if (this.jeu.typeJoueur1() == TypeJoueur.IA_MOYEN){
 				jeu.plateau = iaMinMax.minMax(jeu.tourJoueur(), jeu.getPlateau());
-			}
-			if (this.jeu.typeJoueur1() == TypeJoueur.IA_DIFFICILE){
-				jeu.plateau = iaBestFirst.BestFirst(jeu.tourJoueur(), jeu.getPlateau());
 			}
 			if (this.jeu.typeJoueur1() == TypeJoueur.IA_EXTREME){
 				jeu.plateau = iaAlphaBeta.alphaBeta(jeu.tourJoueur(), jeu.getPlateau());
@@ -110,9 +103,6 @@ public class MoteurJeu {
 			}
 			if (this.jeu.typeJoueur2() == TypeJoueur.IA_MOYEN){
 				jeu.plateau = iaMinMax.minMax(jeu.tourJoueur(), jeu.getPlateau());
-			}
-			if (this.jeu.typeJoueur2() == TypeJoueur.IA_DIFFICILE){
-				jeu.plateau = iaBestFirst.BestFirst(jeu.tourJoueur(), jeu.getPlateau());
 			}
 			if (this.jeu.typeJoueur1() == TypeJoueur.IA_EXTREME){
 				jeu.plateau = iaAlphaBeta.alphaBeta(jeu.tourJoueur(), jeu.getPlateau());
