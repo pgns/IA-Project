@@ -152,6 +152,7 @@ public class MoteurTestProfondeur {
 	
 	/**
 	 * Lance la partie
+	 * @param profondeur la profondeur de la partie
 	 */
 	public void lancerPartie(int profondeur){
 		long start;

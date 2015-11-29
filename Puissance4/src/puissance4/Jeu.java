@@ -57,9 +57,15 @@ public class Jeu {
 		}
 		
 		/**
-		 * Lance une nouvelle partie
-		 * @param j1 type du joueur 1
-		 * @param j2 type du joueur 2
+		 * Initialise une nouvelle partie
+		 * @param j1 joueur 1
+		 * @param j2 joueur 2
+		 * @param H1J1 heuristique 1 joueur 1
+		 * @param H2J1 heuristique 2 joueur 1
+		 * @param H3J1 heuristique 3 joueur 1
+		 * @param H1J2 heuristique 1 joueur 2
+		 * @param H2J2 heuristique 2 joueur 2
+		 * @param H3J2 heuristique 3 joueur 2
 		 */
 		public void nouvellePartie(TypeJoueur j1,TypeJoueur j2, boolean H1J1, boolean H2J1, boolean H3J1, boolean H1J2, boolean H2J2, boolean H3J2){
 			typeJ1 = j1;

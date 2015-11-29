@@ -17,8 +17,8 @@ public class MinMax {
 	
 	/**
 	 * La fonction min-max
-	 * @param joueur
-	 * @param plateau
+	 * @param joueur joueur
+	 * @param plateau plateau
 	 * @return le plateau qui a la meilleur proba de gagner
 	 */
 	public Plateau minMax(byte joueur, Plateau plateau){
@@ -43,12 +43,13 @@ public class MinMax {
 	
 	
 	/**
-	 * La fonction valeau min-max limitï¿½ a une profondeur
-	 * @param p
-	 * @param joueur
-	 * @param niveauMax
-	 * @param profondeur
-	 * @return
+	 * La fonction valeau min-max limité a une profondeur
+	 * @param p plateau
+	 * @param joueur joueur
+	 * @param niveauMax niveauMax
+	 * @param profondeur profondeur
+	 * @param player le player
+	 * @return renvoie la valeur minmax
 	 */
 	public int valeurMinMaxLimite(Plateau p, byte joueur, boolean niveauMax, int profondeur, byte player){
 		byte joueurVictoir = p.victoire();
