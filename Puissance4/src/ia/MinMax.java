@@ -21,10 +21,11 @@ public class MinMax {
 	 * @param plateau plateau
 	 * @return le plateau qui a la meilleur proba de gagner
 	 */
+	
 	public Plateau minMax(byte joueur, Plateau plateau){
-		this.profondeurArbre = 5;
+		this.profondeurArbre = 4;
 		this.listeCoupPossible = new ListeCoupPossible(plateau,joueur);
-		
+		//System.out.println("hello");
 		int valeur_max = Integer.MIN_VALUE;
 		int indice_max=0;
 		int valeur;
@@ -41,7 +42,6 @@ public class MinMax {
 	}
 	
 	
-	
 	/**
 	 * La fonction valeau min-max limité a une profondeur
 	 * @param p plateau
@@ -54,21 +54,24 @@ public class MinMax {
 	public int valeurMinMaxLimite(Plateau p, byte joueur, boolean niveauMax, int profondeur, byte player){
 		byte joueurVictoir = p.victoire();
 		byte joueurNext;
+		int note;
 		int i;
 		
-		if (joueurVictoir == joueur)
-			return Integer.MAX_VALUE - (profondeurArbre - profondeur);
-		else if((joueurVictoir != joueur)&&(joueurVictoir != 0))
-			return Integer.MIN_VALUE + (profondeurArbre - profondeur);
+		if (joueurVictoir == player){
+			return Integer.MAX_VALUE - (profondeurArbre - profondeur);}
+		//else if((joueurVictoir != joueur)&&(joueurVictoir != 0)){
+		else if(joueurVictoir != 0){
+			return Integer.MIN_VALUE + (profondeurArbre - profondeur);}
 		else
 			if (p.plateauPlein())
 				return 0;
 			else{	
-				if (profondeur == 0)//<== profondeur
-					if(joueur == player)
-						return p.evalHeuristique(player);
-					else
-						return -p.evalHeuristique(player);
+				if (profondeur == 0){//<== profondeur
+					note = p.evalHeuristique(joueur);
+					if(joueur != player)
+						note = note*-1;
+					return note;
+				}
 				if (joueur == 1)
 					joueurNext = 2;
 				else
@@ -81,19 +84,19 @@ public class MinMax {
 					listeValeur.add(valeurMinMaxLimite(lcp.get(i),joueurNext,!niveauMax,profondeur-1, player));
 				}				
 				
-				if(niveauMax){ //retour du minimum
+				if(!niveauMax){ //retour du minimum
 					int min = Integer.MAX_VALUE;
 					for(i = 0 ; i < listeValeur.size() ; i++)
 						if (listeValeur.get(i) < min)
 							min = listeValeur.get(i);
-					return min * -1;
+					return min;
 				}
 				else{ //retour du maximum 
 					int max = Integer.MIN_VALUE;
 					for(i = 0 ; i < listeValeur.size() ; i++)
 						if (listeValeur.get(i) > max)
 							max = listeValeur.get(i);
-					return max * -1;
+					return max;
 				}
 			}
 	}
